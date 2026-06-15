@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | Podar TinySteps Parent App</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&amp;family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:wght@100..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#702285",
+                    "secondary-fixed": "#fcd7ff",
+                    "inverse-on-surface": "#eef1f6",
+                    "on-tertiary": "#ffffff",
+                    "on-background": "#181c20",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#4f434f",
+                    "accent-orange": "#DC7603",
+                    "on-primary-fixed-variant": "#751988",
+                    "primary-container": "#832996",
+                    "surface-container-low": "#f1f4f9",
+                    "primary-fixed": "#fed6ff",
+                    "tertiary-fixed-dim": "#ffb780",
+                    "tertiary-fixed": "#ffdcc4",
+                    "secondary-container": "#ec96ff",
+                    "on-primary": "#ffffff",
+                    "inverse-primary": "#f6adff",
+                    "secondary-fixed-dim": "#f3aeff",
+                    "on-tertiary-fixed-variant": "#6f3800",
+                    "on-error": "#ffffff",
+                    "primary": "#68047d",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e5e8ee",
+                    "surface-bright": "#f7f9ff",
+                    "inverse-surface": "#2d3135",
+                    "glass-fill": "rgba(255, 255, 255, 0.7)",
+                    "outline-variant": "#d3c1d1",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#9036a3",
+                    "surface-container": "#ebeef3",
+                    "surface": "#f7f9ff",
+                    "on-primary-fixed": "#350041",
+                    "tertiary-container": "#814200",
+                    "outline": "#817381",
+                    "on-secondary-container": "#702285",
+                    "surface-container-highest": "#e0e3e8",
+                    "on-tertiary-fixed": "#2f1400",
+                    "surface-dim": "#d7dadf",
+                    "on-tertiary-container": "#ffb780",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e0e3e8",
+                    "primary-fixed-dim": "#f6adff",
+                    "on-primary-container": "#f6adff",
+                    "on-surface": "#181c20",
+                    "surface-lavender": "#F7F1FA",
+                    "on-secondary-fixed": "#340042",
+                    "background": "#f7f9ff",
+                    "text-muted": "#484848",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#8b3d9f",
+                    "tertiary": "#5f2f00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "gutter": "16px",
+                    "section-gap": "40px",
+                    "container-margin": "24px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["DM Serif Text"],
+                    "label-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["DM Serif Text"],
+                    "display-lg": ["DM Serif Text"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f7f9ff;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #68047d 0%, #8b3d9f 100%);
+            border-bottom-left-radius: 4rem;
+            border-bottom-right-radius: 4rem;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(104, 4, 125, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .animate-slide-up {
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .pattern-overlay {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        .input-focus-ring:focus-within {
+            box-shadow: 0 0 0 2px #9036a3;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<main class="min-h-screen flex flex-col items-center">
+<!-- Hero Header -->
+<header class="w-full hero-gradient pt-16 pb-32 px-container-margin relative overflow-hidden flex flex-col items-center text-center">
+<!-- Decorative Elements -->
+<div class="absolute inset-0 pattern-overlay opacity-30"></div>
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-secondary-container/20 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-12 -right-12 w-80 h-80 bg-primary-fixed/10 rounded-full blur-3xl"></div>
+<!-- Content -->
+<div class="relative z-10 flex flex-col items-center animate-fade-in">
+<img alt="TinySteps Logo" class="w-20 h-20 md:w-24 md:h-24 mb-6 drop-shadow-xl" data-alt="The official logo for TinySteps, a modern and high-end academic application. The logo features a stylized purple emblem representing nurturing education and growth, set against a pristine, soft-focus background. The visual style is minimalist and corporate, emphasizing trust, prestige, and institutional authority with a warm, child-friendly undertone." src="https://lh3.googleusercontent.com/aida/ADBb0uilsyxqZvFCpSletAAmAr0HNHTvlOi3L01HQKJ5xhQxTqCw81Yfp8sYSqZ2W4XyaIbXc_uBAzOE4Jaq7AEtjtbCdopb4OMuTfAjRPSz1Sc4X1mBTMclath2x7Zb3Vm0sq-Ondn5r8lfSLrQORejzoEPYBga93v9chuo3DRkvHd1QqCzvmzoJwXxV94FloacCRr2U40ymTOV2AqmyGeVmMgHTR1FquZhfPVGrKk2QcRVj0EjO7_ltjKtY4s"/>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-primary mb-2">Podar TinySteps Parent App</h1>
+<p class="font-body-md text-on-primary/80 max-w-xs md:max-w-md">Manage your child's learning journey effortlessly with our premium digital companion.</p>
+</div>
+</header>
+<!-- Login Card Container -->
+<section class="w-full max-w-md px-container-margin -mt-20 relative z-20 animate-slide-up">
+<div class="glass-card rounded-lg p-8">
+<div class="mb-8 text-center">
+<h2 class="font-headline-md text-headline-md text-primary">Welcome Back</h2>
+<p class="font-body-md text-on-surface-variant">Access your parent dashboard</p>
+</div>
+<form class="space-y-6" onsubmit="event.preventDefault();">
+<!-- Email Field -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="email">Enter registered email</label>
+<div class="relative flex items-center bg-surface-lavender rounded-lg px-4 py-4 input-focus-ring transition-all duration-200">
+<span class="material-symbols-outlined text-outline mr-3" data-icon="mail">mail</span>
+<input class="bg-transparent border-none p-0 w-full focus:ring-0 text-on-surface placeholder:text-outline-variant font-body-md" id="email" placeholder="email@example.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Field -->
+<div class="space-y-2">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1" for="password">Enter password</label>
+<div class="relative flex items-center bg-surface-lavender rounded-lg px-4 py-4 input-focus-ring transition-all duration-200">
+<span class="material-symbols-outlined text-outline mr-3" data-icon="lock">lock</span>
+<input class="bg-transparent border-none p-0 w-full focus:ring-0 text-on-surface placeholder:text-outline-variant font-body-md" id="password" placeholder="••••••••" required="" type="password"/>
+<button class="ml-2 focus:outline-none" onclick="togglePassword()" type="button">
+<span class="material-symbols-outlined text-outline" data-icon="visibility" id="password-toggle-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Remember & Forgot -->
+<div class="flex items-center justify-between">
+<label class="flex items-center cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary-container transition-all cursor-pointer" type="checkbox"/>
+<span class="ml-2 font-label-sm text-label-sm text-on-surface-variant group-hover:text-primary transition-colors">Remember me</span>
+</label>
+<a class="font-label-sm text-label-sm text-secondary font-semibold hover:underline decoration-2 underline-offset-4" href="#">Forgot Password?</a>
+</div>
+<!-- Login Button -->
+<button class="w-full h-14 bg-gradient-to-r from-primary to-secondary text-on-primary font-label-lg text-label-lg rounded-full shadow-lg shadow-primary/20 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2" type="submit">
+<span>Login to Dashboard</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<!-- Contact School -->
+<div class="mt-10 pt-8 border-t border-surface-container flex flex-col items-center gap-4">
+<p class="font-body-md text-on-surface-variant">Don't have an account?</p>
+<a class="flex items-center gap-2 px-6 py-2 rounded-full border border-primary/20 text-primary font-label-lg text-label-lg hover:bg-primary/5 transition-colors" href="tel:+123456789">
+<span class="material-symbols-outlined text-[18px]" data-icon="school">school</span>
+<span>Contact School</span>
+</a>
+</div>
+</div>
+<!-- Trust Section -->
+<div class="mt-12 grid grid-cols-2 gap-4 animate-fade-in" style="animation-delay: 0.3s;">
+<div class="bg-surface-container/50 p-4 rounded-lg flex flex-col items-center text-center gap-2 border border-white/40">
+<span class="material-symbols-outlined text-primary" data-icon="verified_user">verified_user</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Secure Parent Access</p>
+</div>
+<div class="bg-surface-container/50 p-4 rounded-lg flex flex-col items-center text-center gap-2 border border-white/40">
+<span class="material-symbols-outlined text-primary" data-icon="notifications_active">notifications_active</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Real-time Updates</p>
+</div>
+<div class="bg-surface-container/50 p-4 rounded-lg flex flex-col items-center text-center gap-2 border border-white/40">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_month">calendar_month</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Attendance Tracking</p>
+</div>
+<div class="bg-surface-container/50 p-4 rounded-lg flex flex-col items-center text-center gap-2 border border-white/40">
+<span class="material-symbols-outlined text-primary" data-icon="assignment">assignment</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Homework &amp; Events</p>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-12 mb-16 text-center animate-fade-in" style="animation-delay: 0.5s;">
+<p class="font-label-sm text-label-sm text-outline flex items-center justify-center gap-2">
+<span class="w-4 h-[1px] bg-outline-variant"></span>
+                    Powered by Podar Education
+                    <span class="w-4 h-[1px] bg-outline-variant"></span>
+</p>
+</footer>
+</section>
+</main>
+<script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('password-toggle-icon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = 'visibility';
+            }
+        }
+
+        // Simple interaction for the button to feel premium
+        const loginBtn = document.querySelector('button[type="submit"]');
+        loginBtn.addEventListener('mousedown', () => {
+            loginBtn.style.transform = 'scale(0.96)';
+        });
+        loginBtn.addEventListener('mouseup', () => {
+            loginBtn.style.transform = 'scale(1.02)';
+        });
+        loginBtn.addEventListener('mouseleave', () => {
+            loginBtn.style.transform = '';
+        });
+    </script>
+</body></html>

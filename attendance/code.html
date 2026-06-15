@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TinySteps | Attendance Analytics</title>
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffdcc4",
+                    "on-secondary-fixed-variant": "#702285",
+                    "inverse-surface": "#2d3135",
+                    "surface-bright": "#f7f9ff",
+                    "on-secondary-container": "#702285",
+                    "surface-dim": "#d7dadf",
+                    "primary-fixed-dim": "#f6adff",
+                    "outline-variant": "#d3c1d1",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#ec96ff",
+                    "glass-fill": "rgba(255, 255, 255, 0.7)",
+                    "surface-container": "#ebeef3",
+                    "primary-container": "#832996",
+                    "tertiary-fixed-dim": "#ffb780",
+                    "on-secondary-fixed": "#340042",
+                    "surface": "#f7f9ff",
+                    "on-error": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "secondary": "#8b3d9f",
+                    "error-container": "#ffdad6",
+                    "inverse-primary": "#f6adff",
+                    "on-tertiary-fixed": "#2f1400",
+                    "surface-container-low": "#f1f4f9",
+                    "primary-fixed": "#fed6ff",
+                    "on-surface-variant": "#4f434f",
+                    "on-tertiary-container": "#ffb780",
+                    "on-primary-container": "#f6adff",
+                    "outline": "#817381",
+                    "surface-lavender": "#F7F1FA",
+                    "secondary-fixed": "#fcd7ff",
+                    "surface-container-high": "#e5e8ee",
+                    "on-tertiary-fixed-variant": "#6f3800",
+                    "surface-tint": "#9036a3",
+                    "on-background": "#181c20",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eef1f6",
+                    "on-primary-fixed-variant": "#751988",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#181c20",
+                    "tertiary-container": "#814200",
+                    "primary": "#68047d",
+                    "surface-container-highest": "#e0e3e8",
+                    "on-primary-fixed": "#350041",
+                    "background": "#f7f9ff",
+                    "text-muted": "#484848",
+                    "surface-variant": "#e0e3e8",
+                    "on-tertiary": "#ffffff",
+                    "secondary-fixed-dim": "#f3aeff",
+                    "accent-orange": "#DC7603",
+                    "tertiary": "#5f2f00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-gap": "40px",
+                    "card-padding": "24px",
+                    "container-margin": "24px",
+                    "gutter": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "label-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["DM Serif Text"],
+                    "headline-lg-mobile": ["DM Serif Text"],
+                    "display-lg": ["DM Serif Text"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #F7F1FA; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .circular-progress {
+            background: radial-gradient(closest-side, white 79%, transparent 80% 100%),
+                        conic-gradient(#68047d 95%, #e0e3e8 0);
+        }
+        .attendance-shadow { box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased text-on-surface">
+<!-- Top App Bar -->
+<header class="bg-primary flex justify-between items-center px-container-margin py-4 w-full rounded-b-lg shadow-md z-40 fixed top-0 left-0 right-0">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border-2 border-on-primary overflow-hidden">
+<img alt="Student Profile Avatar" class="w-full h-full object-cover" data-alt="A close-up high-resolution portrait of a smiling young student with neat hair, wearing a clean school uniform. The lighting is soft and natural, suggesting a warm and safe educational environment. The background is a soft-focus classroom with light lavender and white tones, matching a premium educational brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2Okzhc4hLZRjZD_UTCtMBMkDeVBsYs0F5SXDzkF7DnF7YoX5dXI1LLUTospOPVFw-lvjiDKheYnPxu1unwmzU-2MN9ojn3jYSS1ylaLNWzLAAE4sjmq2oAtJuew5AvyGvGAVJX7LgYQ9lb3huukcblFsTPkG_NdA99VTxqkGqhd5jzAy588rsE2kqTBI5PaNwlzhdnhAJ6VxckzEYGRhaBJBCTeAvJTRzpuxSOXC_yrwCSeuJv8RnNka2YtJKdLtkp0tx8c9l1v0"/>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-primary">TinySteps</h1>
+</div>
+<button class="text-on-primary hover:opacity-80 transition-opacity active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</header>
+<main class="pt-24 pb-32 px-container-margin max-w-[1280px] mx-auto space-y-gutter">
+<!-- Screen Title -->
+<div class="flex justify-between items-end mb-4">
+<div class="space-y-1">
+<p class="font-label-sm text-label-sm text-primary uppercase tracking-widest">Analytics</p>
+<h2 class="font-headline-md text-headline-md text-on-surface">Attendance</h2>
+</div>
+<div class="flex items-center gap-2 bg-white px-4 py-2 rounded-full attendance-shadow border border-white/20">
+<span class="material-symbols-outlined text-primary text-[18px]">calendar_month</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant">October 2023</span>
+</div>
+</div>
+<!-- Attendance Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Rate Card -->
+<div class="md:col-span-8 bg-white p-card-padding rounded-lg attendance-shadow flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="space-y-4 text-center md:text-left">
+<div>
+<h3 class="font-label-lg text-label-lg text-on-surface-variant">Monthly Attendance Rate</h3>
+<p class="font-display-lg text-display-lg text-primary">95%</p>
+</div>
+<div class="flex flex-wrap gap-4 justify-center md:justify-start">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+<span class="font-label-sm text-label-sm">Present: 19</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-red-500"></span>
+<span class="font-label-sm text-label-sm">Absent: 1</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-amber-400"></span>
+<span class="font-label-sm text-label-sm">Leave: 0</span>
+</div>
+</div>
+</div>
+<div class="relative w-40 h-40 flex items-center justify-center">
+<div class="circular-progress w-full h-full rounded-full flex items-center justify-center">
+<div class="flex flex-col items-center">
+<span class="font-headline-md text-headline-md text-primary">19/20</span>
+<span class="font-label-sm text-label-sm text-outline">Days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Mini Stat Card -->
+<div class="md:col-span-4 bg-primary text-on-primary p-card-padding rounded-lg attendance-shadow flex flex-col justify-between overflow-hidden relative">
+<div class="z-10">
+<h3 class="font-label-lg text-label-lg opacity-80">Streak</h3>
+<p class="font-headline-lg text-headline-lg mt-2">12 Days</p>
+<p class="font-label-sm text-label-sm opacity-70 mt-1">Consistency is the key to success!</p>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[120px] opacity-10 rotate-12">auto_awesome</span>
+</div>
+</div>
+<!-- Calendar Card -->
+<div class="bg-white p-card-padding rounded-lg attendance-shadow">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md">Daily Log</h3>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-surface-lavender transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-2 rounded-full hover:bg-surface-lavender transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-2 text-center">
+<!-- Days Header -->
+<div class="font-label-lg text-label-lg text-outline pb-4">S</div>
+<div class="font-label-lg text-label-lg text-outline pb-4">M</div>
+<div class="font-label-lg text-label-lg text-outline pb-4">T</div>
+<div class="font-label-lg text-label-lg text-outline pb-4">W</div>
+<div class="font-label-lg text-label-lg text-outline pb-4">T</div>
+<div class="font-label-lg text-label-lg text-outline pb-4">F</div>
+<div class="font-label-lg text-label-lg text-outline pb-4">S</div>
+<!-- Calendar Days (Dummy Data for Oct 2023) -->
+<div class="h-12 flex items-center justify-center font-label-lg text-outline/30">24</div>
+<div class="h-12 flex items-center justify-center font-label-lg text-outline/30">25</div>
+<div class="h-12 flex items-center justify-center font-label-lg text-outline/30">26</div>
+<div class="h-12 flex items-center justify-center font-label-lg text-outline/30">27</div>
+<div class="h-12 flex items-center justify-center font-label-lg text-outline/30">28</div>
+<div class="h-12 flex items-center justify-center font-label-lg text-outline/30">29</div>
+<div class="h-12 flex items-center justify-center font-label-lg text-outline/30">30</div>
+<!-- Oct 1 - Oct 7 -->
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">1</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">2</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">3</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">4</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">5</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-red-50 text-red-700 rounded-lg border border-red-100">6</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-surface-lavender text-on-surface-variant rounded-lg">7</div>
+<!-- Oct 8 - Oct 14 -->
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">8</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">9</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-primary text-on-primary rounded-lg shadow-lg ring-4 ring-primary-container/20">10</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">11</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">12</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-amber-50 text-amber-700 rounded-lg border border-amber-100">13</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-surface-lavender text-on-surface-variant rounded-lg">14</div>
+<!-- Oct 15+ (Showing current view) -->
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">15</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">16</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">17</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">18</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">19</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-emerald-50 text-emerald-700 rounded-lg border border-emerald-100">20</div>
+<div class="h-12 flex items-center justify-center font-label-lg bg-surface-lavender text-on-surface-variant rounded-lg">21</div>
+</div>
+</div>
+<!-- Monthly Stats & Graph -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+<!-- Trend Graph -->
+<div class="bg-white p-card-padding rounded-lg attendance-shadow flex flex-col justify-between">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-headline-md text-headline-md">Engagement Trend</h3>
+<div class="text-emerald-500 flex items-center font-label-sm">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>+2.4%</span>
+</div>
+</div>
+<!-- Visual placeholder for a premium fintech graph -->
+<div class="relative h-48 w-full mt-4">
+<svg class="w-full h-full" viewbox="0 0 400 150">
+<defs>
+<lineargradient id="lineGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#68047d;stop-opacity:0.2"></stop>
+<stop offset="100%" style="stop-color:#68047d;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,130 C40,110 80,125 120,80 C160,35 200,60 240,40 C280,20 320,45 360,30 L400,10" fill="none" stroke="#68047d" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0,130 C40,110 80,125 120,80 C160,35 200,60 240,40 C280,20 320,45 360,30 L400,10 V150 H0 Z" fill="url(#lineGrad)"></path>
+<!-- Data Points -->
+<circle cx="120" cy="80" fill="#68047d" r="5"></circle>
+<circle cx="240" cy="40" fill="#68047d" r="5"></circle>
+<circle cx="360" cy="30" fill="#68047d" r="5"></circle>
+</svg>
+<div class="absolute bottom-0 w-full flex justify-between px-2 font-label-sm text-outline text-[10px] uppercase">
+<span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span>
+</div>
+</div>
+</div>
+<!-- Status Cards -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-emerald-50 p-6 rounded-lg border border-emerald-100 flex flex-col justify-center">
+<span class="material-symbols-outlined text-emerald-600 mb-2">check_circle</span>
+<h4 class="font-label-lg text-label-lg text-emerald-800">Present</h4>
+<p class="font-headline-md text-headline-md text-emerald-700">19 Days</p>
+</div>
+<div class="bg-red-50 p-6 rounded-lg border border-red-100 flex flex-col justify-center">
+<span class="material-symbols-outlined text-red-600 mb-2">cancel</span>
+<h4 class="font-label-lg text-label-lg text-red-800">Absent</h4>
+<p class="font-headline-md text-headline-md text-red-700">01 Day</p>
+</div>
+<div class="bg-amber-50 p-6 rounded-lg border border-amber-100 flex flex-col justify-center">
+<span class="material-symbols-outlined text-amber-600 mb-2">work_off</span>
+<h4 class="font-label-lg text-label-lg text-amber-800">Leave</h4>
+<p class="font-headline-md text-headline-md text-amber-700">00 Days</p>
+</div>
+<div class="bg-surface-container p-6 rounded-lg border border-outline-variant flex flex-col justify-center">
+<span class="material-symbols-outlined text-outline mb-2">event_busy</span>
+<h4 class="font-label-lg text-label-lg text-on-surface-variant">Holidays</h4>
+<p class="font-headline-md text-headline-md text-on-surface">04 Days</p>
+</div>
+</div>
+</div>
+<!-- History List -->
+<div class="bg-white rounded-lg attendance-shadow overflow-hidden">
+<div class="px-card-padding py-6 border-b border-surface-container flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Recent History</h3>
+<button class="text-primary font-label-lg hover:underline transition-all">View All</button>
+</div>
+<div class="divide-y divide-surface-container max-h-80 overflow-y-auto hide-scrollbar">
+<!-- Record 1 -->
+<div class="px-card-padding py-4 flex items-center justify-between hover:bg-surface-lavender transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-700 font-bold">
+                            10
+                        </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Tuesday, Oct 10</p>
+<p class="font-label-sm text-label-sm text-outline">Checked-in at 08:32 AM</p>
+</div>
+</div>
+<span class="px-4 py-1.5 bg-emerald-500/10 text-emerald-700 rounded-full font-label-sm text-label-sm border border-emerald-200">Present</span>
+</div>
+<!-- Record 2 -->
+<div class="px-card-padding py-4 flex items-center justify-between hover:bg-surface-lavender transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-700 font-bold">
+                            09
+                        </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Monday, Oct 09</p>
+<p class="font-label-sm text-label-sm text-outline">Checked-in at 08:15 AM</p>
+</div>
+</div>
+<span class="px-4 py-1.5 bg-emerald-500/10 text-emerald-700 rounded-full font-label-sm text-label-sm border border-emerald-200">Present</span>
+</div>
+<!-- Record 3 (Absent) -->
+<div class="px-card-padding py-4 flex items-center justify-between hover:bg-surface-lavender transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-red-100 rounded-xl flex items-center justify-center text-red-700 font-bold">
+                            06
+                        </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Friday, Oct 06</p>
+<p class="font-label-sm text-label-sm text-outline">Uninformed Absence</p>
+</div>
+</div>
+<span class="px-4 py-1.5 bg-red-500/10 text-red-700 rounded-full font-label-sm text-label-sm border border-red-200">Absent</span>
+</div>
+<!-- Record 4 -->
+<div class="px-card-padding py-4 flex items-center justify-between hover:bg-surface-lavender transition-colors cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-700 font-bold">
+                            05
+                        </div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Thursday, Oct 05</p>
+<p class="font-label-sm text-label-sm text-outline">Checked-in at 08:40 AM</p>
+</div>
+</div>
+<span class="px-4 py-1.5 bg-emerald-500/10 text-emerald-700 rounded-full font-label-sm text-label-sm border border-emerald-200">Present</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Shared Shell) -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-4 py-3 mx-container-margin fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] rounded-full bg-glass-fill backdrop-blur-xl border border-white/20 shadow-lg glass-nav">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary/10 rounded-full transition-colors p-2 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<!-- Attendance (Active) -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-2 transition-all active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+<span class="font-label-sm text-label-sm">Attendance</span>
+</a>
+<!-- Fees -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary/10 rounded-full transition-colors p-2 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-sm text-label-sm">Fees</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary/10 rounded-full transition-colors p-2 active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.attendance-shadow').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-4px)';
+                card.style.transition = 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Simple Tab active state persistence simulation
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                // Not preventing default to allow real navigation logic
+                // But providing visual feedback
+            });
+        });
+    </script>
+</body></html>

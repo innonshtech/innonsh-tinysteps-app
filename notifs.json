@@ -1,0 +1,98 @@
+[
+  {
+    "_id": "69b168383373cb4943ae801b",
+    "recipientId": "69948ad99ce1d17e40c70d26",
+    "type": "event",
+    "title": "New Event: uuuuu",
+    "message": "ggggg",
+    "relatedId": "69b168373373cb4943ae800b",
+    "relatedModel": "Event",
+    "isRead": false,
+    "priority": "normal",
+    "icon": "calendar",
+    "metadata": {
+      "startDate": "3/11/2026",
+      "endDate": "3/11/2026",
+      "date": "3/11/2026",
+      "time": "09:00 - 11:00",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "location": "jjjjj",
+      "image": "",
+      "audience": "Students",
+      "attachments": [
+        {
+          "name": "",
+          "url": ""
+        }
+      ]
+    },
+    "__v": 0,
+    "createdAt": "2026-03-11T13:03:52.286Z",
+    "updatedAt": "2026-03-11T13:03:52.286Z"
+  },
+  {
+    "_id": "69b168383373cb4943ae801a",
+    "recipientId": "69948ad99ce1d17e40c70d25",
+    "type": "event",
+    "title": "New Event: uuuuu",
+    "message": "ggggg",
+    "relatedId": "69b168373373cb4943ae800b",
+    "relatedModel": "Event",
+    "isRead": false,
+    "priority": "normal",
+    "icon": "calendar",
+    "metadata": {
+      "startDate": "3/11/2026",
+      "endDate": "3/11/2026",
+      "date": "3/11/2026",
+      "time": "09:00 - 11:00",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "location": "jjjjj",
+      "image": "",
+      "audience": "Students",
+      "attachments": [
+        {
+          "name": "",
+          "url": ""
+        }
+      ]
+    },
+    "__v": 0,
+    "createdAt": "2026-03-11T13:03:52.286Z",
+    "updatedAt": "2026-03-11T13:03:52.286Z"
+  },
+  {
+    "_id": "69b168383373cb4943ae8019",
+    "recipientId": "69940715e8d3447a5a3a4b7e",
+    "type": "event",
+    "title": "New Event: uuuuu",
+    "message": "ggggg",
+    "relatedId": "69b168373373cb4943ae800b",
+    "relatedModel": "Event",
+    "isRead": false,
+    "priority": "normal",
+    "icon": "calendar",
+    "metadata": {
+      "startDate": "3/11/2026",
+      "endDate": "3/11/2026",
+      "date": "3/11/2026",
+      "time": "09:00 - 11:00",
+      "startTime": "09:00",
+      "endTime": "11:00",
+      "location": "jjjjj",
+      "image": "",
+      "audience": "Students",
+      "attachments": [
+        {
+          "name": "",
+          "url": ""
+        }
+      ]
+    },
+    "__v": 0,
+    "createdAt": "2026-03-11T13:03:52.286Z",
+    "updatedAt": "2026-03-11T13:03:52.286Z"
+  }
+]

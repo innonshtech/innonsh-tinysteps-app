@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TinySteps Parent Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "error": "#ba1a1a",
+                "tertiary-fixed": "#ffdcc4",
+                "on-secondary-fixed-variant": "#702285",
+                "inverse-surface": "#2d3135",
+                "surface-bright": "#f7f9ff",
+                "on-secondary-container": "#702285",
+                "surface-dim": "#d7dadf",
+                "primary-fixed-dim": "#f6adff",
+                "outline-variant": "#d3c1d1",
+                "surface-container-lowest": "#ffffff",
+                "secondary-container": "#ec96ff",
+                "glass-fill": "rgba(255, 255, 255, 0.7)",
+                "surface-container": "#ebeef3",
+                "primary-container": "#832996",
+                "tertiary-fixed-dim": "#ffb780",
+                "on-secondary-fixed": "#340042",
+                "surface": "#f7f9ff",
+                "on-error": "#ffffff",
+                "on-error-container": "#93000a",
+                "secondary": "#8b3d9f",
+                "error-container": "#ffdad6",
+                "inverse-primary": "#f6adff",
+                "on-tertiary-fixed": "#2f1400",
+                "surface-container-low": "#f1f4f9",
+                "primary-fixed": "#fed6ff",
+                "on-surface-variant": "#4f434f",
+                "on-tertiary-container": "#ffb780",
+                "on-primary-container": "#f6adff",
+                "outline": "#817381",
+                "surface-lavender": "#F7F1FA",
+                "secondary-fixed": "#fcd7ff",
+                "surface-container-high": "#e5e8ee",
+                "on-tertiary-fixed-variant": "#6f3800",
+                "surface-tint": "#9036a3",
+                "on-background": "#181c20",
+                "on-secondary": "#ffffff",
+                "inverse-on-surface": "#eef1f6",
+                "on-primary-fixed-variant": "#751988",
+                "on-primary": "#ffffff",
+                "on-surface": "#181c20",
+                "tertiary-container": "#814200",
+                "primary": "#68047d",
+                "surface-container-highest": "#e0e3e8",
+                "on-primary-fixed": "#350041",
+                "background": "#f7f9ff",
+                "text-muted": "#484848",
+                "surface-variant": "#e0e3e8",
+                "on-tertiary": "#ffffff",
+                "secondary-fixed-dim": "#f3aeff",
+                "accent-orange": "#DC7603",
+                "tertiary": "#5f2f00"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "section-gap": "40px",
+                "card-padding": "24px",
+                "container-margin": "24px",
+                "gutter": "16px",
+                "base": "8px"
+            },
+            "fontFamily": {
+                "label-lg": ["Inter"],
+                "body-lg": ["Inter"],
+                "headline-lg": ["DM Serif Text"],
+                "headline-lg-mobile": ["DM Serif Text"],
+                "display-lg": ["DM Serif Text"],
+                "headline-md": ["Inter"],
+                "body-md": ["Inter"],
+                "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      }
+      .curved-header {
+        border-radius: 0 0 3rem 3rem;
+        background: linear-gradient(135deg, #68047d 0%, #8b3d9f 100%);
+      }
+      .nav-pill {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .nav-pill:active {
+        transform: scale(0.9);
+      }
+    </style>
+</head>
+<body class="bg-surface-lavender min-h-screen pb-32">
+<!-- Hero Header Component (TopAppBar Reference) -->
+<header class="curved-header pt-12 pb-24 px-container-margin shadow-md">
+<div class="flex justify-between items-center mb-6">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 shadow-inner">
+<img alt="Sanvi Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCONLLacJsZakhBsYn9A3ibTcIvJIAIU7M5huAgSdTzideESJhFX7H6Qj1A_Comw36h3v6akz5b1t8yxQb7fsyu8NAzRwzX1afJUUD3CxQTknKY6qbw7_GtVyq0cHJsSTsz9VYeGsVOUY_2poGATi233506aWSD6zKlde8KGlkdFPQD9iLAR9PrmTB4PuetpRf5eL9Rq0dCIcR9DsWYCzuOfwGPQtpTgqnLmxEkU2vq0FvlPXW6gZqC4sLCvon477QYFzQwSMjJOKE"/>
+</div>
+<div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-on-primary">TinySteps</h1>
+<p class="font-label-sm text-label-sm text-on-primary-fixed-variant opacity-90">Podar International School</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-on-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</div>
+<div class="mt-4">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary">Good Morning, Sanvi</h2>
+<p class="font-body-md text-body-md text-primary-fixed opacity-90">Today is Monday, 14 Oct</p>
+</div>
+</header>
+<!-- Student Summary Card -->
+<main class="px-container-margin -mt-16">
+<section class="bg-white rounded-lg p-card-padding shadow-[0_10px_30px_rgba(0,0,0,0.05)] relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-full -mr-12 -mt-12"></div>
+<div class="flex gap-4 items-center">
+<div class="relative">
+<img alt="Sanvi Student Avatar" class="w-20 h-20 rounded-full object-cover border-4 border-surface-lavender" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCONLLacJsZakhBsYn9A3ibTcIvJIAIU7M5huAgSdTzideESJhFX7H6Qj1A_Comw36h3v6akz5b1t8yxQb7fsyu8NAzRwzX1afJUUD3CxQTknKY6qbw7_GtVyq0cHJsSTsz9VYeGsVOUY_2poGATi233506aWSD6zKlde8KGlkdFPQD9iLAR9PrmTB4PuetpRf5eL9Rq0dCIcR9DsWYCzuOfwGPQtpTgqnLmxEkU2vq0FvlPXW6gZqC4sLCvon477QYFzQwSMjJOKE"/>
+<div class="absolute bottom-0 right-0 bg-green-500 w-5 h-5 rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Sanvi Sharma</h3>
+<p class="font-body-md text-body-md text-text-muted">Class 1-A • Roll No. 24</p>
+</div>
+<span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-label-sm font-label-sm uppercase tracking-wider">Present</span>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-6 border-t border-surface-container flex justify-between">
+<div class="text-center flex-1">
+<p class="font-label-sm text-label-sm text-text-muted mb-1 uppercase">Attendance</p>
+<p class="font-headline-md text-headline-md text-primary">95%</p>
+</div>
+<div class="w-px bg-surface-container h-12"></div>
+<div class="text-center flex-1">
+<p class="font-label-sm text-label-sm text-text-muted mb-1 uppercase">Last Entry</p>
+<p class="font-headline-md text-headline-md text-secondary">08:15 AM</p>
+</div>
+</div>
+</section>
+<!-- Overview Section -->
+<section class="mt-8 grid grid-cols-2 gap-gutter">
+<div class="bg-white rounded-lg p-card-padding shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between h-40">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-muted">Attendance</p>
+<p class="font-headline-md text-headline-md text-on-surface">95%</p>
+</div>
+</div>
+<div class="bg-white rounded-lg p-card-padding shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between h-40">
+<div class="w-10 h-10 rounded-full bg-accent-orange/10 flex items-center justify-center text-accent-orange">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-text-muted">Due Fees</p>
+<p class="font-headline-md text-headline-md text-on-surface">₹12,500</p>
+</div>
+</div>
+</section>
+<!-- Quick Actions Grid -->
+<section class="mt-8">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-headline-md text-headline-md text-on-surface">Quick Actions</h4>
+<button class="text-primary font-label-lg text-label-lg">View All</button>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<!-- Attendance -->
+<button class="bg-white p-card-padding rounded-lg flex flex-col items-center gap-3 shadow-sm active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="fact_check">fact_check</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Attendance</span>
+</button>
+<!-- Fees -->
+<button class="bg-white p-card-padding rounded-lg flex flex-col items-center gap-3 shadow-sm active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary/20 to-secondary/5 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Fees</span>
+</button>
+<!-- Homework -->
+<button class="bg-white p-card-padding rounded-lg flex flex-col items-center gap-3 shadow-sm active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-tertiary-container/40 to-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Homework</span>
+</button>
+<!-- Events -->
+<button class="bg-white p-card-padding rounded-lg flex flex-col items-center gap-3 shadow-sm active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-error/20 to-error/5 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="event">event</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Events</span>
+</button>
+<!-- Gallery -->
+<button class="bg-white p-card-padding rounded-lg flex flex-col items-center gap-3 shadow-sm active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 flex items-center justify-center text-blue-600">
+<span class="material-symbols-outlined" data-icon="photo_library">photo_library</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Gallery</span>
+</button>
+<!-- Circulars -->
+<button class="bg-white p-card-padding rounded-lg flex flex-col items-center gap-3 shadow-sm active:scale-95 transition-transform">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500/20 to-green-500/5 flex items-center justify-center text-green-600">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">Circulars</span>
+</button>
+</div>
+</section>
+<!-- Recent Updates Timeline -->
+<section class="mt-8 mb-8">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-6">Recent Updates</h4>
+<div class="space-y-6 relative before:absolute before:left-5 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-highest">
+<!-- Update 1 -->
+<div class="relative pl-12">
+<div class="absolute left-3 w-4 h-4 rounded-full bg-primary ring-4 ring-white"></div>
+<div class="bg-white p-4 rounded-lg shadow-sm">
+<div class="flex justify-between mb-1">
+<h5 class="font-label-lg text-label-lg text-on-surface">Annual Sports Meet 2024</h5>
+<span class="text-[10px] text-text-muted">2h ago</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted">Participation consent form has been uploaded to circulars section.</p>
+</div>
+</div>
+<!-- Update 2 -->
+<div class="relative pl-12">
+<div class="absolute left-3 w-4 h-4 rounded-full bg-secondary ring-4 ring-white"></div>
+<div class="bg-white p-4 rounded-lg shadow-sm">
+<div class="flex justify-between mb-1">
+<h5 class="font-label-lg text-label-lg text-on-surface">English Homework</h5>
+<span class="text-[10px] text-text-muted">Yesterday</span>
+</div>
+<p class="font-body-md text-body-md text-text-muted">Complete Page 24-26 in the Alphabet Workbook by Wednesday.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (BottomNavBar Reference) -->
+<nav class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] rounded-full glass-card z-50 flex justify-around items-center px-4 py-3 border border-white/20">
+<!-- Home -->
+<a class="nav-pill flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-5 py-2" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-sm text-[10px]">Home</span>
+</a>
+<!-- Attendance -->
+<a class="nav-pill flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary/10 rounded-full transition-colors px-2 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-label-sm text-[10px]">Attendance</span>
+</a>
+<!-- Fees -->
+<a class="nav-pill flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary/10 rounded-full transition-colors px-2 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-sm text-[10px]">Fees</span>
+</a>
+<!-- Profile -->
+<a class="nav-pill flex flex-col items-center justify-center text-on-surface-variant hover:bg-primary/10 rounded-full transition-colors px-2 py-1" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-[10px]">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for quick action buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.style.transform = 'scale(0.95)';
+            });
+            btn.addEventListener('touchend', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

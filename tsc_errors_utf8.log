@@ -1,0 +1,36 @@
+﻿src/navigation/BottomTabNavigator.tsx(67,17): error TS2322: Type '({ route }: Props) => Element' is not assignable to type 'ScreenComponentType<BottomTabParamList, "Notifications"> | undefined'.
+  Type '({ route }: Props) => Element' is not assignable to type 'FunctionComponent<{}>'.
+    Types of parameters '__0' and 'props' are incompatible.
+      Type '{}' is missing the following properties from type 'Props': navigation, route
+src/screens/academic/AttendanceScreen.tsx(6,10): error TS2305: Module '"victory-native"' has no exported member 'VictoryPie'.
+src/screens/academic/AttendanceScreen.tsx(92,24): error TS7031: Binding element 'datum' implicitly has an 'any' type.
+src/screens/academic/ExamResultsScreen.tsx(6,10): error TS2305: Module '"victory-native"' has no exported member 'VictoryLine'.
+src/screens/academic/ExamResultsScreen.tsx(6,23): error TS2305: Module '"victory-native"' has no exported member 'VictoryChart'.
+src/screens/academic/ExamResultsScreen.tsx(6,37): error TS2305: Module '"victory-native"' has no exported member 'VictoryAxis'.
+src/screens/academic/ExamResultsScreen.tsx(6,50): error TS2305: Module '"victory-native"' has no exported member 'VictoryScatter'.
+src/screens/academic/ExamResultsScreen.tsx(6,66): error TS2305: Module '"victory-native"' has no exported member 'VictoryTheme'.
+src/screens/academic/ExamResultsScreen.tsx(83,28): error TS7006: Parameter 'x' implicitly has an 'any' type.
+src/screens/main/HomeScreen.tsx(79,64): error TS2769: No overload matches this call.
+  Argument of type '["Profile"]' is not assignable to parameter of type '[screen: "MainTabs", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: "Onboarding", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | ... 11 more ... | [screen: ...]'.
+    Type '["Profile"]' is not assignable to type '[screen: "MainTabs", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: "Onboarding", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: ...] | [screen: ...] | [screen: ...] | [screen: ...]'.
+      Type '["Profile"]' is not assignable to type '[screen: "AdmissionStatus", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined]'.
+        Type at position 0 in source is not compatible with type at position 0 in target.
+          Type '"Profile"' is not assignable to type '"AdmissionStatus"'.
+  Overload 2 of 2, '(options: { name: "MainTabs"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | { name: "Onboarding"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | ... 11 more ... | { ...; }): void', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type '{ name: "MainTabs"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | { name: "Onboarding"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | ... 11 more ... | { ...; }'.
+src/screens/main/HomeScreen.tsx(142,50): error TS2769: No overload matches this call.
+  Argument of type '["Fees"]' is not assignable to parameter of type '[screen: "MainTabs", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: "Onboarding", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | ... 11 more ... | [screen: ...]'.
+    Type '["Fees"]' is not assignable to type '[screen: "MainTabs", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: "Onboarding", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: ...] | [screen: ...] | [screen: ...] | [screen: ...]'.
+      Type '["Fees"]' is not assignable to type '[screen: "AdmissionStatus", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined]'.
+        Type at position 0 in source is not compatible with type at position 0 in target.
+          Type '"Fees"' is not assignable to type '"AdmissionStatus"'.
+  Overload 2 of 2, '(options: { name: "MainTabs"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | { name: "Onboarding"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | ... 11 more ... | { ...; }): void', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type '{ name: "MainTabs"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | { name: "Onboarding"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | ... 11 more ... | { ...; }'.
+src/screens/main/HomeScreen.tsx(165,64): error TS2769: No overload matches this call.
+  Argument of type '["Notifications"]' is not assignable to parameter of type '[screen: "MainTabs", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: "Onboarding", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | ... 11 more ... | [screen: ...]'.
+    Type '["Notifications"]' is not assignable to type '[screen: "MainTabs", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: "Onboarding", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined] | [screen: ...] | [screen: ...] | [screen: ...] | [screen: ...]'.
+      Type '["Notifications"]' is not assignable to type '[screen: "AdmissionStatus", params?: undefined, options?: { merge?: boolean | undefined; pop?: boolean | undefined; } | undefined]'.
+        Type at position 0 in source is not compatible with type at position 0 in target.
+          Type '"Notifications"' is not assignable to type '"AdmissionStatus"'.
+  Overload 2 of 2, '(options: { name: "MainTabs"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | { name: "Onboarding"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | ... 11 more ... | { ...; }): void', gave the following error.
+    Argument of type 'string' is not assignable to parameter of type '{ name: "MainTabs"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | { name: "Onboarding"; params: undefined; path?: string | undefined; merge?: boolean | undefined; pop?: boolean | undefined; } | ... 11 more ... | { ...; }'.

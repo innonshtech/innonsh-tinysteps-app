@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduPremium - Fees Management</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdcc4",
+                    "primary-container": "#832996",
+                    "on-secondary": "#ffffff",
+                    "text-muted": "#484848",
+                    "secondary-container": "#ec96ff",
+                    "surface-container-high": "#e5e8ee",
+                    "on-primary-fixed": "#350041",
+                    "accent-orange": "#DC7603",
+                    "glass-fill": "rgba(255, 255, 255, 0.7)",
+                    "surface": "#f7f9ff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#f6adff",
+                    "on-primary-fixed-variant": "#751988",
+                    "on-tertiary-container": "#ffb780",
+                    "surface-bright": "#f7f9ff",
+                    "on-primary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#f6adff",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#9036a3",
+                    "on-secondary-fixed-variant": "#702285",
+                    "primary": "#68047d",
+                    "on-tertiary": "#ffffff",
+                    "on-surface": "#181c20",
+                    "surface-variant": "#e0e3e8",
+                    "inverse-surface": "#2d3135",
+                    "background": "#f7f9ff",
+                    "secondary-fixed-dim": "#f3aeff",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#2f1400",
+                    "surface-container-highest": "#e0e3e8",
+                    "on-surface-variant": "#4f434f",
+                    "tertiary-container": "#814200",
+                    "surface-dim": "#d7dadf",
+                    "tertiary-fixed-dim": "#ffb780",
+                    "on-secondary-container": "#702285",
+                    "primary-fixed": "#fed6ff",
+                    "surface-lavender": "#F7F1FA",
+                    "on-tertiary-fixed-variant": "#6f3800",
+                    "secondary-fixed": "#fcd7ff",
+                    "surface-container": "#ebeef3",
+                    "secondary": "#8b3d9f",
+                    "outline-variant": "#d3c1d1",
+                    "surface-container-low": "#f1f4f9",
+                    "outline": "#817381",
+                    "on-background": "#181c20",
+                    "tertiary": "#5f2f00",
+                    "on-secondary-fixed": "#340042",
+                    "inverse-primary": "#f6adff",
+                    "inverse-on-surface": "#eef1f6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "card-padding": "24px",
+                    "section-gap": "40px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "container-margin": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["DM Serif Text"],
+                    "headline-lg": ["DM Serif Text"],
+                    "headline-md": ["Inter"],
+                    "headline-lg-mobile": ["DM Serif Text"],
+                    "label-sm": ["Inter"],
+                    "label-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.85s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up {
+            animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed antialiased pb-32">
+<!-- Top AppBar (JSON Component Implementation) -->
+<header class="bg-glass-fill backdrop-blur-xl border-b border-white/20 shadow-sm sticky top-0 z-50 flex justify-between items-center w-full px-container-margin py-4 max-w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="A professional high-resolution headshot of a smiling young mother in a modern minimalist setting. She has soft natural lighting hitting her face, creating a warm and approachable feeling. The background is a soft-focus interior with neutral tones of cream and lavender, maintaining the premium corporate educational app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGl1K-SIVsobcR2Kja-Zxp91SOvFmPB2erktNPyT5ZkdBqv5wl3kdjOBFY1DLvWFe5RcRMYGAr18yZRT9zyY34nv10OsvqAoVAbSt4I43cMEmCHAocN-rk-pvQ09PcPsubeZk9bV3p6Z8Nb9dsgREWcdkdyoo5HACSSzfOZUws1GLuevDvvNCEYblaMIF5xfUmgj1Ucl6QnfPB7Gxe0ah1__gLwB-EZ4T5R91cD1nJYYis45j6_tfW6d2k9CGNyHnJOE2Ssa0rrSo"/>
+</div>
+<span class="text-headline-md font-display-lg text-primary">EduPremium</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<main class="max-w-md mx-auto">
+<!-- Hero Header -->
+<section class="relative px-container-margin pt-base pb-12 bg-gradient-to-b from-primary to-secondary rounded-b-xl overflow-hidden shadow-lg">
+<div class="absolute top-0 right-0 -mr-12 -mt-12 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-primary mb-2">Fees Overview</h1>
+<p class="text-on-primary/80 font-label-lg">Academic Year 2023-24</p>
+</div>
+</section>
+<!-- Financial Summary Bento Grid -->
+<section class="px-container-margin -mt-8 grid grid-cols-2 gap-4">
+<!-- Card 1: Outstanding -->
+<div class="animate-fade-up bg-white p-card-padding rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col gap-2 border border-white/50" style="animation-delay: 0.1s;">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Outstanding</span>
+<span class="font-headline-md text-error">₹12,500</span>
+<div class="w-full h-1 bg-error-container rounded-full mt-2 overflow-hidden">
+<div class="w-1/4 h-full bg-error"></div>
+</div>
+</div>
+<!-- Card 2: Paid -->
+<div class="animate-fade-up bg-white p-card-padding rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col gap-2 border border-white/50" style="animation-delay: 0.2s;">
+<span class="text-on-surface-variant font-label-sm uppercase tracking-wider">Paid</span>
+<span class="font-headline-md text-primary">₹45,000</span>
+<div class="w-full h-1 bg-primary-fixed rounded-full mt-2 overflow-hidden">
+<div class="w-3/4 h-full bg-primary"></div>
+</div>
+</div>
+</section>
+<!-- Progress Visualization Section -->
+<section class="mt-section-gap px-container-margin animate-fade-up" style="animation-delay: 0.3s;">
+<div class="bg-surface-lavender p-card-padding rounded-lg flex items-center justify-between">
+<div class="relative flex items-center justify-center w-32 h-32">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-surface-container stroke-current" cx="50" cy="50" fill="transparent" r="40" stroke-width="8"></circle>
+<circle class="text-primary stroke-current progress-ring-circle" cx="50" cy="50" fill="transparent" r="40" stroke-linecap="round" stroke-width="8" style="stroke-dasharray: 251.2; stroke-dashoffset: 50.24;"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-headline-md text-primary">78%</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Paid</span>
+</div>
+</div>
+<div class="flex-1 ml-6 flex flex-col gap-3">
+<div>
+<p class="text-on-surface-variant font-label-sm">Total Annual Fees</p>
+<p class="font-headline-md text-on-surface">₹57,500</p>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-label-sm text-on-surface-variant">Paid: ₹45,000</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="text-label-sm text-on-surface-variant">Pending: ₹12,500</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming Due Card -->
+<section class="mt-section-gap px-container-margin animate-fade-up" style="animation-delay: 0.4s;">
+<div class="bg-white p-card-padding rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.05)] border-l-4 border-accent-orange">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-tertiary-fixed text-on-tertiary-fixed">
+<span class="material-symbols-outlined text-[14px] mr-1" data-icon="warning">warning</span>
+                            Due Soon
+                        </span>
+<h3 class="mt-2 font-headline-md text-on-surface">Quarterly Installment</h3>
+</div>
+<div class="text-right">
+<p class="text-label-sm text-on-surface-variant">Amount</p>
+<p class="font-bold text-headline-md text-accent-orange">₹12,500</p>
+</div>
+</div>
+<div class="flex items-center justify-between py-3 border-t border-surface-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="event">event</span>
+<span class="text-body-md font-medium">Due: Oct 30, 2023</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-lg hover:opacity-90 active:scale-95 transition-all">
+                        Pay Now
+                    </button>
+</div>
+</div>
+</section>
+<!-- Transaction History -->
+<section class="mt-section-gap px-container-margin animate-fade-up pb-12" style="animation-delay: 0.5s;">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-on-surface">Recent Transactions</h2>
+<button class="text-primary font-label-lg flex items-center">
+                    View All
+                    <span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Transaction Item 1 -->
+<div class="bg-white p-4 rounded-lg flex items-center justify-between border border-surface-container hover:bg-surface-lavender transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Receipt: TS-8821</p>
+<p class="text-label-sm text-on-surface-variant">Sept 12, 2023 • Online Payment</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-on-surface">₹15,000</p>
+<span class="text-[10px] font-bold uppercase text-on-primary bg-[#2e7d32] px-2 py-0.5 rounded-full">Paid</span>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="bg-white p-4 rounded-lg flex items-center justify-between border border-surface-container hover:bg-surface-lavender transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Receipt: TS-8540</p>
+<p class="text-label-sm text-on-surface-variant">July 05, 2023 • Cash Payment</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-on-surface">₹30,000</p>
+<span class="text-[10px] font-bold uppercase text-on-primary bg-[#2e7d32] px-2 py-0.5 rounded-full">Paid</span>
+</div>
+</div>
+</div>
+<!-- CTA -->
+<button class="mt-8 w-full flex items-center justify-center gap-2 bg-primary text-on-primary py-4 rounded-lg font-label-lg shadow-lg shadow-primary/20 hover:opacity-90 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                Download Last Receipt
+            </button>
+</section>
+</main>
+<!-- Bottom Navigation Bar (JSON Component Implementation) -->
+<nav class="fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center h-20 mx-auto max-w-md bg-glass-fill backdrop-blur-2xl border border-white/30 shadow-[0_10px_30px_rgba(0,0,0,0.05)] rounded-full w-[92%] px-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-2 hover:bg-primary/10 transition-all rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-label-sm font-label-sm mt-1">Overview</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-full px-5 py-2 scale-105 shadow-md" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="text-label-sm font-label-sm mt-1">Fees</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-2 hover:bg-primary/10 transition-all rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="text-label-sm font-label-sm mt-1">Events</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant px-5 py-2 hover:bg-primary/10 transition-all rounded-full" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-label-sm font-label-sm mt-1">Account</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for the progress ring
+        window.addEventListener('DOMContentLoaded', () => {
+            const circle = document.querySelector('.progress-ring-circle');
+            if (circle) {
+                const radius = circle.r.baseVal.value;
+                const circumference = radius * 2 * Math.PI;
+                circle.style.strokeDasharray = `${circumference} ${circumference}`;
+                
+                // Calculate percentage (78% paid)
+                const offset = circumference - (78 / 100 * circumference);
+                
+                // Delayed animation for visual flair
+                setTimeout(() => {
+                    circle.style.strokeDashoffset = offset;
+                }, 400);
+            }
+        });
+    </script>
+</body></html>
