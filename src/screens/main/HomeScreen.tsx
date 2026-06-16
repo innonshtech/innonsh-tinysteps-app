@@ -10,6 +10,7 @@ import dayjs from 'dayjs';
 
 import { useAuthStore } from '../../store/authStore';
 import { useChildStore } from '../../store/childStore';
+import { useNotificationStore } from '../../store/notificationStore';
 import { BottomTabParamList } from '../../navigation/BottomTabNavigator';
 import { DashboardService } from '../../services/dashboard.service';
 
@@ -39,6 +40,7 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
 
   const { children, selectedChild, fetchChildren, setSelectedChild } = useChildStore();
+  const unreadCount = useNotificationStore((state) => state.unreadCount);
   const [refreshing, setRefreshing] = useState(false);
 
   // Dynamic dashboard states
@@ -173,6 +175,7 @@ export default function HomeScreen() {
             </View>
             <TouchableOpacity style={styles.bellBtn} onPress={() => navigation.navigate('Notifications')}>
               <Bell color="#fff" size={24} />
+              {unreadCount > 0 && <View style={styles.bellBadge} />}
             </TouchableOpacity>
           </View>
           <View style={styles.greetingContainer}>
@@ -182,7 +185,11 @@ export default function HomeScreen() {
           
           {children.length > 1 && (
             <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.childSelectorContainer}>
-              {children.map(child => renderChildPill({ item: child }))}
+              {children.map(child => (
+                <React.Fragment key={child._id}>
+                  {renderChildPill({ item: child })}
+                </React.Fragment>
+              ))}
             </ScrollView>
           )}
         </View>
@@ -339,6 +346,17 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.15)',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  bellBadge: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: brandColors.error,
+    borderWidth: 2,
+    borderColor: brandColors.primary,
   },
   greetingContainer: {
     marginTop: 8,

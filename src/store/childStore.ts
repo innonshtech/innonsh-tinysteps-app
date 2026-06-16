@@ -41,7 +41,6 @@ export const useChildStore = create<ChildState>((set) => ({
         try {
             const response = await apiClient.get('/parent/students');
             const students = response.data.students || [];
-            console.log('Fetched students data:', JSON.stringify(students, null, 2));
 
             // Map backend fields to the store requirements if needed
             // The backend returns: _id, firstName, lastName, classId, admissionNo, etc.
@@ -49,8 +48,8 @@ export const useChildStore = create<ChildState>((set) => ({
                 _id: s._id,
                 name: `${s.firstName} ${s.lastName}`,
                 admissionNo: s.admissionNo || '',
-                classId: typeof s.classId === 'object' ? s.classId._id : s.classId,
-                className: typeof s.classId === 'object' ? s.classId.name : 'Unknown Class',
+                classId: s.classId ? (typeof s.classId === 'object' ? s.classId._id : s.classId) : '',
+                className: s.classId && typeof s.classId === 'object' ? s.classId.name : 'Unknown Class',
                 avatarUrl: s.profilePicture || undefined,
             }));
 

@@ -32,29 +32,47 @@ export default function EventsScreen({ route }: any) {
         const allEvents = response.events;
 
         const childEvents = allEvents.filter((e: any) => {
+          // 1. Filter by target audience (only show 'all' or 'parents')
+          if (e.targetAudience && !['all', 'parents'].includes(e.targetAudience)) {
+            return false;
+          }
+          // 2. Filter by class selection
           if (!e.classIds || e.classIds.length === 0) return true;
-          return e.classIds.includes(selectedChild?.classId);
+          return e.classIds.some((c: any) => c._id === selectedChild?.classId || c === selectedChild?.classId);
         });
 
         const mapped = childEvents.map((e: any, index: number) => {
-          let dateStr = e.date || '';
-          if (dateStr.includes('T')) {
+          let dateStr = e.startDate || e.date || '';
+          if (dateStr && dateStr.includes('T')) {
             const d = new Date(dateStr);
             dateStr = `${d.getDate()} ${d.toLocaleString('default', { month: 'short' })} ${d.getFullYear()}`;
           }
 
           let typeColor: BadgeStatus = 'info';
-          if (e.type === 'Holiday') typeColor = 'error';
-          if (e.type === 'Academic') typeColor = 'success';
-          if (e.type === 'General') typeColor = 'warning';
+          const evType = (e.eventType || e.type || '').toLowerCase();
+          if (evType === 'holiday') typeColor = 'error';
+          else if (['meeting', 'workshop', 'general'].includes(evType)) typeColor = 'warning';
+          else if (['celebration', 'competition', 'academic'].includes(evType)) typeColor = 'success';
+
+          let timeStr = 'All Day';
+          if (e.startTime) {
+            timeStr = e.startTime;
+            if (e.endTime) timeStr += ` - ${e.endTime}`;
+          } else if (e.time) {
+            timeStr = e.time;
+          }
+
+          const displayType = e.eventType 
+            ? e.eventType.charAt(0).toUpperCase() + e.eventType.slice(1) 
+            : (e.type || 'General');
 
           return {
             id: e._id || index.toString(),
             title: e.title || 'Event',
             date: dateStr,
-            time: e.time || 'All Day',
-            venue: e.venue || '-',
-            type: e.type || 'General',
+            time: timeStr,
+            venue: e.location || e.venue || 'School Campus',
+            type: displayType,
             typeColor
           };
         });

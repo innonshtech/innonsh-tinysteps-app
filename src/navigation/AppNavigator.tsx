@@ -24,6 +24,16 @@ import EventsScreen from '../screens/misc/EventsScreen';
 import ContactSchoolScreen from '../screens/misc/ContactSchoolScreen';
 import SettingsScreen from '../screens/misc/SettingsScreen';
 import ChangePasswordScreen from '../screens/misc/ChangePasswordScreen';
+// FCM
+import {
+    setupForegroundMessageHandler,
+    setupNotifeeEventHandler,
+} from '../services/fcm.service';
+import {
+    navigationRef,
+    setupBackgroundNotificationHandler,
+    handleInitialNotification,
+} from '../services/notification.handler';
 
 export type RootStackParamList = {
     Login: undefined;
@@ -42,6 +52,7 @@ export type RootStackParamList = {
     Settings: undefined;
     ChangePassword: undefined;
     Timetable: { classId: string };
+    Notifications: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -62,12 +73,33 @@ export const AppNavigator = () => {
         }
     }, [isLoading]);
 
+    // ── FCM Foreground Handlers ────────────────────────────────────────────
+    useEffect(() => {
+        // Foreground Firebase message handler
+        const unsubForeground = setupForegroundMessageHandler();
+        // Notifee foreground tap handler
+        const unsubNotifee = setupNotifeeEventHandler();
+        // Background notification tap handler (app was in background)
+        const unsubBackground = setupBackgroundNotificationHandler();
+
+        // Initial notification (app was killed/terminated)
+        handleInitialNotification();
+
+        return () => {
+            unsubForeground();
+            unsubNotifee();
+            unsubBackground();
+        };
+    }, []);
+    // ──────────────────────────────────────────────────────────────────────
+
     if (isLoading || !isSplashAnimationDone) {
         return <AnimatedSplashScreen onAnimationComplete={() => setIsSplashAnimationDone(true)} />;
     }
 
     return (
-        <NavigationContainer>
+        // Pass navigationRef so notification handler can navigate
+        <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
                 screenOptions={{
                     headerStyle: { backgroundColor: Colors.primary },
@@ -133,4 +165,5 @@ export const AppNavigator = () => {
         </NavigationContainer >
     );
 };
+
 

@@ -62,11 +62,7 @@ const TabBarItem = ({ label, icon: Icon, isFocused, onPress, badgeCount }: any) 
                 />
                 <Icon color={color} size={22} />
                 {badgeCount > 0 && (
-                    <View style={styles.badge}>
-                        <Typography variant="label" weight="bold" color={Colors.white} style={{ fontSize: 8 }}>
-                            {badgeCount > 9 ? '9+' : badgeCount}
-                        </Typography>
-                    </View>
+                    <View style={styles.badge} />
                 )}
             </View>
 
@@ -199,16 +195,13 @@ const styles = StyleSheet.create({
     },
     badge: {
         position: 'absolute',
-        top: -4,
-        right: -4,
+        top: 2,
+        right: 8,
         backgroundColor: Colors.error,
-        minWidth: 16,
-        height: 16,
-        borderRadius: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 3,
-        borderWidth: 1.5,
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        borderWidth: 2,
         borderColor: Colors.white,
     }
 });

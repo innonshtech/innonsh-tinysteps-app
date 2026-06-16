@@ -13,23 +13,40 @@ export interface User {
 interface AuthState {
     user: User | null;
     token: string | null;
+    fcmToken: string | null;
     isAuthenticated: boolean;
     isLoading: boolean;
     login: (token: string, user: User) => Promise<void>;
     logout: () => Promise<void>;
     checkAuth: () => Promise<void>;
+    setFcmToken: (token: string | null) => void;
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set, get) => ({
     user: null,
     token: null,
+    fcmToken: null,
     isAuthenticated: false,
     isLoading: true, // initial load state for splash
+
+    setFcmToken: (fcmToken: string | null) => set({ fcmToken }),
 
     login: async (token: string, user: User) => {
         try {
             await Keychain.setGenericPassword('userToken', token);
             set({ token, user, isAuthenticated: true });
+
+            // Register FCM token after login (lazy import to avoid circular deps)
+            try {
+                const { initializeFCM } = await import('../services/fcm.service');
+                const fcmToken = await initializeFCM();
+                if (fcmToken) {
+                    set({ fcmToken });
+                }
+            } catch (fcmError) {
+                console.error('[AuthStore] FCM initialization failed:', fcmError);
+                // Non-fatal — app still works without push notifications
+            }
         } catch (e) {
             console.error('Failed to save token', e);
         }
@@ -37,9 +54,19 @@ export const useAuthStore = create<AuthState>((set) => ({
 
     logout: async () => {
         try {
+            // Unregister FCM token before clearing credentials
+            const { fcmToken } = get();
+            if (fcmToken) {
+                try {
+                    const { unregisterToken } = await import('../services/fcm.service');
+                    await unregisterToken(fcmToken);
+                } catch (fcmError) {
+                    console.error('[AuthStore] FCM unregister failed:', fcmError);
+                }
+            }
+
             await Keychain.resetGenericPassword();
-            // Import childStore dynamically if needed, or clear it elsewhere. For now, just reset auth.
-            set({ token: null, user: null, isAuthenticated: false });
+            set({ token: null, user: null, isAuthenticated: false, fcmToken: null });
         } catch (e) {
             console.error('Failed to clear token', e);
         }
@@ -62,6 +89,17 @@ export const useAuthStore = create<AuthState>((set) => ({
                         isAuthenticated: true,
                         isLoading: false,
                     });
+
+                    // Re-initialize FCM on app resume (handles token refresh cases)
+                    try {
+                        const { initializeFCM } = await import('../services/fcm.service');
+                        const fcmToken = await initializeFCM();
+                        if (fcmToken) {
+                            set({ fcmToken });
+                        }
+                    } catch (fcmError) {
+                        console.error('[AuthStore] FCM re-init failed:', fcmError);
+                    }
                 } catch (apiError) {
                     // Token invalid or expired
                     await Keychain.resetGenericPassword();
@@ -76,4 +114,5 @@ export const useAuthStore = create<AuthState>((set) => ({
         }
     },
 }));
+
 
