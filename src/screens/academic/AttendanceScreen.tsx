@@ -9,7 +9,7 @@ import dayjs from 'dayjs';
 import LinearGradient from 'react-native-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { PodarColors } from '../../theme/colors';
+import { InnonshColors } from '../../theme/colors';
 import { AttendanceService } from '../../services/attendance.service';
 import { useChildStore } from '../../store/childStore';
 

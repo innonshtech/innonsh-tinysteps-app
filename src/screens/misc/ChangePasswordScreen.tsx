@@ -18,9 +18,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { Typography } from '../../components/ui/Typography';
 import { Button } from '../../components/ui/Button';
-import { PodarColors } from '../../theme/colors';
-import { PodarSpacing, PodarRadius } from '../../theme/spacing';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshSpacing, InnonshRadius } from '../../theme/spacing';
+import { InnonshShadows } from '../../theme/shadows';
 import { apiClient } from '../../api/client';
 
 export default function ChangePasswordScreen() {
@@ -86,7 +86,7 @@ export default function ChangePasswordScreen() {
         <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
             <View style={[styles.headerBg, { height: insets.top + 160 }]}>
                 <LinearGradient
-                    colors={[PodarColors.primary, PodarColors.primaryDark]}
+                    colors={[InnonshColors.primary, InnonshColors.primaryDark]}
                     style={StyleSheet.absoluteFill}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
@@ -100,41 +100,41 @@ export default function ChangePasswordScreen() {
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                 <Animated.View style={[styles.formCard, { opacity: fadeAnim, transform: [{ translateY: slideAnim }] }]}>
                     
-                    <Typography variant="body" color={PodarColors.textSecondary} style={styles.instructionText}>
+                    <Typography variant="body" color={InnonshColors.textSecondary} style={styles.instructionText}>
                         Please enter your current password to create a new one. Your new password must be at least 8 characters long.
                     </Typography>
 
                     <View style={styles.inputWrapper}>
-                        <Typography variant="caption" color={PodarColors.textSecondary} style={styles.inputLabel}>
+                        <Typography variant="caption" color={InnonshColors.textSecondary} style={styles.inputLabel}>
                             Old Password
                         </Typography>
                         <View style={styles.inputContainer}>
-                            <Lock color={PodarColors.primary} size={20} style={styles.inputIcon} />
+                            <Lock color={InnonshColors.primary} size={20} style={styles.inputIcon} />
                             <TextInput
                                 style={styles.input}
                                 placeholder="••••••••"
-                                placeholderTextColor={PodarColors.textSecondary}
+                                placeholderTextColor={InnonshColors.textSecondary}
                                 value={oldPassword}
                                 onChangeText={setOldPassword}
                                 secureTextEntry={!showPassword}
                                 autoCapitalize="none"
                             />
                             <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon}>
-                                {showPassword ? <EyeOff color={PodarColors.textSecondary} size={20} /> : <Eye color={PodarColors.textSecondary} size={20} />}
+                                {showPassword ? <EyeOff color={InnonshColors.textSecondary} size={20} /> : <Eye color={InnonshColors.textSecondary} size={20} />}
                             </TouchableOpacity>
                         </View>
                     </View>
 
                     <View style={styles.inputWrapper}>
-                        <Typography variant="caption" color={PodarColors.textSecondary} style={styles.inputLabel}>
+                        <Typography variant="caption" color={InnonshColors.textSecondary} style={styles.inputLabel}>
                             New Password
                         </Typography>
                         <View style={styles.inputContainer}>
-                            <Lock color={PodarColors.primary} size={20} style={styles.inputIcon} />
+                            <Lock color={InnonshColors.primary} size={20} style={styles.inputIcon} />
                             <TextInput
                                 style={styles.input}
                                 placeholder="••••••••"
-                                placeholderTextColor={PodarColors.textSecondary}
+                                placeholderTextColor={InnonshColors.textSecondary}
                                 value={newPassword}
                                 onChangeText={setNewPassword}
                                 secureTextEntry={!showPassword}
@@ -144,15 +144,15 @@ export default function ChangePasswordScreen() {
                     </View>
 
                     <View style={styles.inputWrapper}>
-                        <Typography variant="caption" color={PodarColors.textSecondary} style={styles.inputLabel}>
+                        <Typography variant="caption" color={InnonshColors.textSecondary} style={styles.inputLabel}>
                             Confirm New Password
                         </Typography>
                         <View style={styles.inputContainer}>
-                            <Lock color={PodarColors.primary} size={20} style={styles.inputIcon} />
+                            <Lock color={InnonshColors.primary} size={20} style={styles.inputIcon} />
                             <TextInput
                                 style={styles.input}
                                 placeholder="••••••••"
-                                placeholderTextColor={PodarColors.textSecondary}
+                                placeholderTextColor={InnonshColors.textSecondary}
                                 value={confirmPassword}
                                 onChangeText={setConfirmPassword}
                                 secureTextEntry={!showPassword}
@@ -177,7 +177,7 @@ export default function ChangePasswordScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: PodarColors.background,
+        backgroundColor: InnonshColors.background,
     },
     headerBg: {
         position: 'absolute',
@@ -207,53 +207,53 @@ const styles = StyleSheet.create({
         left: -50,
     },
     scrollContent: {
-        padding: PodarSpacing.lg,
+        padding: InnonshSpacing.lg,
         paddingBottom: 40,
     },
     formCard: {
-        backgroundColor: PodarColors.surface,
-        borderRadius: PodarRadius.xl,
-        padding: PodarSpacing.xl,
-        ...PodarShadows.lg,
+        backgroundColor: InnonshColors.surface,
+        borderRadius: InnonshRadius.xl,
+        padding: InnonshSpacing.xl,
+        ...InnonshShadows.lg,
     },
     instructionText: {
-        marginBottom: PodarSpacing.lg,
+        marginBottom: InnonshSpacing.lg,
         textAlign: 'center',
         lineHeight: 20,
     },
     inputWrapper: {
-        marginBottom: PodarSpacing.lg,
+        marginBottom: InnonshSpacing.lg,
     },
     inputLabel: {
-        marginBottom: PodarSpacing.xs,
+        marginBottom: InnonshSpacing.xs,
         marginLeft: 4,
     },
     inputContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: PodarColors.background,
+        backgroundColor: InnonshColors.background,
         borderWidth: 1,
-        borderColor: PodarColors.border,
-        borderRadius: PodarRadius.md,
-        paddingHorizontal: PodarSpacing.md,
+        borderColor: InnonshColors.border,
+        borderRadius: InnonshRadius.md,
+        paddingHorizontal: InnonshSpacing.md,
         height: 56,
     },
     inputIcon: {
-        marginRight: PodarSpacing.md,
+        marginRight: InnonshSpacing.md,
     },
     input: {
         flex: 1,
         fontSize: 16,
-        color: PodarColors.textPrimary,
+        color: InnonshColors.textPrimary,
         fontFamily: 'GoogleSans-Medium',
     },
     eyeIcon: {
-        padding: PodarSpacing.sm,
+        padding: InnonshSpacing.sm,
     },
     actionButton: {
         marginTop: 12,
         height: 56,
-        borderRadius: PodarRadius.md,
+        borderRadius: InnonshRadius.md,
     }
 });
 

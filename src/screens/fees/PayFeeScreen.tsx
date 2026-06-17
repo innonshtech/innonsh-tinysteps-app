@@ -2,14 +2,14 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { Typography } from '../../components/ui/Typography';
-import { PodarColors } from '../../theme/colors';
+import { InnonshColors } from '../../theme/colors';
 
 export default function PayFeeScreen() {
   return (
     <View style={styles.container}>
       <AppHeader title="Pay Fee" showBack />
       <View style={styles.content}>
-        <Typography variant="h2" color={PodarColors.textSecondary}>
+        <Typography variant="h2" color={InnonshColors.textSecondary}>
           Payment Gateway Integration Pending
         </Typography>
       </View>
@@ -20,7 +20,7 @@ export default function PayFeeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: PodarColors.background,
+    backgroundColor: InnonshColors.background,
   },
   content: {
     flex: 1,

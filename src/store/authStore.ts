@@ -38,8 +38,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
             // Register FCM token after login (lazy import to avoid circular deps)
             try {
-                const { initializeFCM } = await import('../services/fcm.service');
-                const fcmToken = await initializeFCM();
+                const fcmService = require('../services/fcm.service');
+                const fcmToken = await fcmService.initializeFCM();
                 if (fcmToken) {
                     set({ fcmToken });
                 }
@@ -58,8 +58,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             const { fcmToken } = get();
             if (fcmToken) {
                 try {
-                    const { unregisterToken } = await import('../services/fcm.service');
-                    await unregisterToken(fcmToken);
+                    const fcmService = require('../services/fcm.service');
+                    await fcmService.unregisterToken(fcmToken);
                 } catch (fcmError) {
                     console.error('[AuthStore] FCM unregister failed:', fcmError);
                 }
@@ -92,8 +92,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
                     // Re-initialize FCM on app resume (handles token refresh cases)
                     try {
-                        const { initializeFCM } = await import('../services/fcm.service');
-                        const fcmToken = await initializeFCM();
+                        const fcmService = require('../services/fcm.service');
+                        const fcmToken = await fcmService.initializeFCM();
                         if (fcmToken) {
                             set({ fcmToken });
                         }

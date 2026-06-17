@@ -7,9 +7,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { Typography } from '../../components/ui/Typography';
 import { Button } from '../../components/ui/Button';
-import { PodarColors } from '../../theme/colors';
-import { PodarSpacing, PodarRadius } from '../../theme/spacing';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshSpacing, InnonshRadius } from '../../theme/spacing';
+import { InnonshShadows } from '../../theme/shadows';
 import { apiClient } from '../../api/client';
 
 export default function ContactSchoolScreen() {
@@ -92,7 +92,7 @@ export default function ContactSchoolScreen() {
         >
             <View style={[styles.headerBg, { height: insets.top + 100 }]}>
                 <LinearGradient
-                    colors={[PodarColors.primary, PodarColors.primaryDark]}
+                    colors={[InnonshColors.primary, InnonshColors.primaryDark]}
                     style={StyleSheet.absoluteFill}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
@@ -103,10 +103,10 @@ export default function ContactSchoolScreen() {
 
             <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                 <View style={styles.formCard}>
-                    <Typography variant="h3" color={PodarColors.primary} style={styles.title}>
+                    <Typography variant="h3" color={InnonshColors.primary} style={styles.title}>
                         Get in Touch
                     </Typography>
-                    <Typography variant="body" color={PodarColors.textSecondary} style={styles.subtitle}>
+                    <Typography variant="body" color={InnonshColors.textSecondary} style={styles.subtitle}>
                         Fill out the form below and we will contact you shortly.
                     </Typography>
 
@@ -115,7 +115,7 @@ export default function ContactSchoolScreen() {
                         <TextInput
                             style={styles.input}
                             placeholder="Enter parent name"
-                            placeholderTextColor={PodarColors.textSecondary}
+                            placeholderTextColor={InnonshColors.textSecondary}
                             value={form.parentName}
                             onChangeText={(text) => handleChange('parentName', text)}
                         />
@@ -127,7 +127,7 @@ export default function ContactSchoolScreen() {
                             <TextInput
                                 style={styles.input}
                                 placeholder="Mobile number"
-                                placeholderTextColor={PodarColors.textSecondary}
+                                placeholderTextColor={InnonshColors.textSecondary}
                                 keyboardType="phone-pad"
                                 value={form.phoneNumber}
                                 onChangeText={(text) => handleChange('phoneNumber', text)}
@@ -138,7 +138,7 @@ export default function ContactSchoolScreen() {
                             <TextInput
                                 style={styles.input}
                                 placeholder="Optional"
-                                placeholderTextColor={PodarColors.textSecondary}
+                                placeholderTextColor={InnonshColors.textSecondary}
                                 keyboardType="email-address"
                                 autoCapitalize="none"
                                 value={form.email}
@@ -152,7 +152,7 @@ export default function ContactSchoolScreen() {
                         <TextInput
                             style={styles.input}
                             placeholder="Enter student name"
-                            placeholderTextColor={PodarColors.textSecondary}
+                            placeholderTextColor={InnonshColors.textSecondary}
                             value={form.childName}
                             onChangeText={(text) => handleChange('childName', text)}
                         />
@@ -164,7 +164,7 @@ export default function ContactSchoolScreen() {
                             <TextInput
                                 style={styles.input}
                                 placeholder="Age"
-                                placeholderTextColor={PodarColors.textSecondary}
+                                placeholderTextColor={InnonshColors.textSecondary}
                                 keyboardType="numeric"
                                 value={form.age}
                                 onChangeText={(text) => handleChange('age', text)}
@@ -176,7 +176,7 @@ export default function ContactSchoolScreen() {
                             <TextInput
                                 style={styles.input}
                                 placeholder="E.g. Nursery"
-                                placeholderTextColor={PodarColors.textSecondary}
+                                placeholderTextColor={InnonshColors.textSecondary}
                                 value={form.interestedClass}
                                 onChangeText={(text) => handleChange('interestedClass', text)}
                             />
@@ -188,7 +188,7 @@ export default function ContactSchoolScreen() {
                         <TextInput
                             style={styles.input}
                             placeholder="Optional branch name"
-                            placeholderTextColor={PodarColors.textSecondary}
+                            placeholderTextColor={InnonshColors.textSecondary}
                             value={form.branch}
                             onChangeText={(text) => handleChange('branch', text)}
                         />
@@ -199,7 +199,7 @@ export default function ContactSchoolScreen() {
                         <TextInput
                             style={styles.input}
                             placeholder="Optional address"
-                            placeholderTextColor={PodarColors.textSecondary}
+                            placeholderTextColor={InnonshColors.textSecondary}
                             value={form.address}
                             onChangeText={(text) => handleChange('address', text)}
                         />
@@ -210,7 +210,7 @@ export default function ContactSchoolScreen() {
                         <TextInput
                             style={[styles.input, styles.textArea]}
                             placeholder="Any specific questions?"
-                            placeholderTextColor={PodarColors.textSecondary}
+                            placeholderTextColor={InnonshColors.textSecondary}
                             multiline
                             numberOfLines={4}
                             textAlignVertical="top"
@@ -234,7 +234,7 @@ export default function ContactSchoolScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: PodarColors.background,
+        backgroundColor: InnonshColors.background,
     },
     headerBg: {
         position: 'absolute',
@@ -246,41 +246,41 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     scrollContent: {
-        padding: PodarSpacing.lg,
+        padding: InnonshSpacing.lg,
         paddingBottom: 40,
     },
     formCard: {
-        backgroundColor: PodarColors.surface,
-        borderRadius: PodarRadius.xl,
-        padding: PodarSpacing.lg,
-        ...PodarShadows.lg,
+        backgroundColor: InnonshColors.surface,
+        borderRadius: InnonshRadius.xl,
+        padding: InnonshSpacing.lg,
+        ...InnonshShadows.lg,
     },
     title: {
-        marginBottom: PodarSpacing.sm,
+        marginBottom: InnonshSpacing.sm,
     },
     subtitle: {
-        marginBottom: PodarSpacing.lg,
+        marginBottom: InnonshSpacing.lg,
     },
     inputGroup: {
-        marginBottom: PodarSpacing.md,
+        marginBottom: InnonshSpacing.md,
     },
     row: {
         flexDirection: 'row',
     },
     label: {
-        marginBottom: PodarSpacing.xs,
-        color: PodarColors.textSecondary,
+        marginBottom: InnonshSpacing.xs,
+        color: InnonshColors.textSecondary,
         marginLeft: 4,
     },
     input: {
-        backgroundColor: PodarColors.background,
+        backgroundColor: InnonshColors.background,
         borderWidth: 1,
-        borderColor: PodarColors.border,
-        borderRadius: PodarRadius.md,
-        paddingHorizontal: PodarSpacing.md,
+        borderColor: InnonshColors.border,
+        borderRadius: InnonshRadius.md,
+        paddingHorizontal: InnonshSpacing.md,
         height: 50,
         fontSize: 16,
-        color: PodarColors.textPrimary,
+        color: InnonshColors.textPrimary,
         fontFamily: 'GoogleSans-Medium',
     },
     textArea: {
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     },
     submitBtn: {
         marginTop: 8,
-        borderRadius: PodarRadius.md,
+        borderRadius: InnonshRadius.md,
         height: 56,
     }
 });

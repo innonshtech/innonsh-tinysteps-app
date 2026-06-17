@@ -103,8 +103,10 @@ export function handleNotificationOpen(data: NotificationData): void {
  */
 export async function handleInitialNotification(): Promise<void> {
   try {
-    const messaging = (await import('@react-native-firebase/messaging')).default;
-    const initialNotification = await messaging().getInitialNotification();
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const messagingModule = require('@react-native-firebase/messaging');
+    const messagingFn = messagingModule.default ?? messagingModule;
+    const initialNotification = await messagingFn().getInitialNotification();
 
     if (initialNotification) {
       console.log('[NotificationHandler] App opened from killed state via notification');

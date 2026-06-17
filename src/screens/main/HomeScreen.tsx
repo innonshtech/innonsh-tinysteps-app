@@ -19,7 +19,7 @@ type NavigationProp = CompositeNavigationProp<
   NativeStackNavigationProp<any>
 >;
 
-// Define explicit Podar branding colors from HTML reference
+// Define explicit Innonsh branding colors from HTML reference
 const brandColors = {
   primary: '#68047d',
   secondary: '#8b3d9f',
@@ -171,7 +171,7 @@ export default function HomeScreen() {
           <View style={styles.headerTop}>
             <View>
               <Text style={styles.headerTitle}>TinySteps</Text>
-              <Text style={styles.headerSubtitle}>Podar International School</Text>
+              <Text style={styles.headerSubtitle}>Innonsh International School</Text>
             </View>
             <TouchableOpacity style={styles.bellBtn} onPress={() => navigation.navigate('Notifications')}>
               <Bell color="#fff" size={24} />

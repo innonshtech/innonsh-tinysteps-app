@@ -13,61 +13,61 @@ type TypographyVariants = {
     button: TextStyle;
 };
 
-export const PodarFonts = {
+export const InnonshFonts = {
     regular: 'GoogleSans-Regular',
     medium: 'GoogleSans-Medium',
     semiBold: 'GoogleSans-SemiBold',
     bold: 'GoogleSans-Bold',
 };
 
-export const PodarTypography: TypographyVariants = {
+export const InnonshTypography: TypographyVariants = {
     display: {
-        fontFamily: PodarFonts.bold,
+        fontFamily: InnonshFonts.bold,
         fontSize: 40,
         lineHeight: 48,
     },
     h1: {
-        fontFamily: PodarFonts.bold,
+        fontFamily: InnonshFonts.bold,
         fontSize: 32,
         lineHeight: 40,
     },
     h2: {
-        fontFamily: PodarFonts.bold,
+        fontFamily: InnonshFonts.bold,
         fontSize: 24,
         lineHeight: 32,
     },
     h3: {
-        fontFamily: PodarFonts.bold,
+        fontFamily: InnonshFonts.bold,
         fontSize: 20,
         lineHeight: 28,
     },
     h4: {
-        fontFamily: PodarFonts.bold,
+        fontFamily: InnonshFonts.bold,
         fontSize: 16,
         lineHeight: 24,
     },
     bodyLarge: {
-        fontFamily: PodarFonts.regular,
+        fontFamily: InnonshFonts.regular,
         fontSize: 18,
         lineHeight: 28,
     },
     body: {
-        fontFamily: PodarFonts.regular,
+        fontFamily: InnonshFonts.regular,
         fontSize: 16,
         lineHeight: 24,
     },
     caption: {
-        fontFamily: PodarFonts.medium,
+        fontFamily: InnonshFonts.medium,
         fontSize: 14,
         lineHeight: 20,
     },
     label: {
-        fontFamily: PodarFonts.medium,
+        fontFamily: InnonshFonts.medium,
         fontSize: 12,
         lineHeight: 16,
     },
     button: {
-        fontFamily: PodarFonts.bold,
+        fontFamily: InnonshFonts.bold,
         fontSize: 16,
         lineHeight: 24,
     },

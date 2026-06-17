@@ -5,9 +5,9 @@ import { ChevronLeft } from 'lucide-react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { PodarColors } from '../../theme/colors';
+import { InnonshColors } from '../../theme/colors';
 import { Typography } from '../ui/Typography';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshShadows } from '../../theme/shadows';
 
 interface AppHeaderProps {
     title: string;
@@ -28,7 +28,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
     return (
         <View style={[styles.container, { paddingTop: dynamicTopInset ? insets.top : 20 }]}>
             <LinearGradient
-                colors={[PodarColors.primary, PodarColors.primaryDark]}
+                colors={[InnonshColors.primary, InnonshColors.primaryDark]}
                 style={StyleSheet.absoluteFill}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
@@ -45,12 +45,12 @@ export const AppHeader: React.FC<AppHeaderProps> = ({
                             onPress={() => navigation.goBack()}
                             hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                         >
-                            <ChevronLeft color={PodarColors.surface} size={28} />
+                            <ChevronLeft color={InnonshColors.surface} size={28} />
                         </TouchableOpacity>
                     )}
                     <Typography
                         variant="h3"
-                        color={PodarColors.surface}
+                        color={InnonshColors.surface}
                         style={[styles.title, showBack ? { marginLeft: 8 } : null]}
                         numberOfLines={1}
                     >
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderBottomLeftRadius: 24,
         borderBottomRightRadius: 24,
-        ...PodarShadows.md,
+        ...InnonshShadows.md,
     },
     headerShape1: {
         position: 'absolute',

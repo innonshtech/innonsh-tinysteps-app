@@ -7,9 +7,9 @@ import { Calendar as CalendarIcon, MapPin, Clock } from 'lucide-react-native';
 import { AppHeader } from '../../components/layout/AppHeader';
 import { Typography } from '../../components/ui/Typography';
 import { StatusBadge, BadgeStatus } from '../../components/ui/StatusBadge';
-import { PodarColors } from '../../theme/colors';
-import { PodarSpacing, PodarRadius } from '../../theme/spacing';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshSpacing, InnonshRadius } from '../../theme/spacing';
+import { InnonshShadows } from '../../theme/shadows';
 import { EventsService } from '../../services/events.service';
 import { useChildStore } from '../../store/childStore';
 
@@ -32,8 +32,8 @@ export default function EventsScreen({ route }: any) {
         const allEvents = response.events;
 
         const childEvents = allEvents.filter((e: any) => {
-          // 1. Filter by target audience (only show 'all' or 'parents')
-          if (e.targetAudience && !['all', 'parents'].includes(e.targetAudience)) {
+          // 1. Filter by target audience (show 'all', 'parents', and 'students')
+          if (e.targetAudience && !['all', 'parents', 'students'].includes(e.targetAudience)) {
             return false;
           }
           // 2. Filter by class selection
@@ -89,25 +89,25 @@ export default function EventsScreen({ route }: any) {
   const renderItem = ({ item }: { item: typeof events[0] }) => (
     <View style={styles.card}>
       <View style={styles.dateBlock}>
-        <Typography variant="h3" color={PodarColors.primary}>{item.date.split(' ')[0]}</Typography>
-        <Typography variant="caption" color={PodarColors.textSecondary}>
+        <Typography variant="h3" color={InnonshColors.primary}>{item.date.split(' ')[0]}</Typography>
+        <Typography variant="caption" color={InnonshColors.textSecondary}>
           {item.date.split(' ').slice(1).join(' ')}
         </Typography>
       </View>
       <View style={styles.contentBlock}>
         <View style={styles.titleRow}>
-          <Typography variant="h4" color={PodarColors.textPrimary} style={{ flex: 1, marginRight: 8 }}>
+          <Typography variant="h4" color={InnonshColors.textPrimary} style={{ flex: 1, marginRight: 8 }}>
             {item.title}
           </Typography>
           <StatusBadge label={item.type} status={item.typeColor} style={styles.badge} />
         </View>
         <View style={styles.infoRow}>
-          <Clock size={16} color={PodarColors.textSecondary} style={styles.icon} />
-          <Typography variant="caption" color={PodarColors.textSecondary}>{item.time}</Typography>
+          <Clock size={16} color={InnonshColors.textSecondary} style={styles.icon} />
+          <Typography variant="caption" color={InnonshColors.textSecondary}>{item.time}</Typography>
         </View>
         <View style={styles.infoRow}>
-          <MapPin size={16} color={PodarColors.textSecondary} style={styles.icon} />
-          <Typography variant="caption" color={PodarColors.textSecondary}>{item.venue}</Typography>
+          <MapPin size={16} color={InnonshColors.textSecondary} style={styles.icon} />
+          <Typography variant="caption" color={InnonshColors.textSecondary}>{item.venue}</Typography>
         </View>
       </View>
     </View>
@@ -131,32 +131,32 @@ export default function EventsScreen({ route }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: PodarColors.background,
+    backgroundColor: InnonshColors.background,
   },
   listContent: {
-    padding: PodarSpacing.lg,
+    padding: InnonshSpacing.lg,
     paddingBottom: 40,
   },
   card: {
     flexDirection: 'row',
-    backgroundColor: PodarColors.surface,
-    borderRadius: PodarRadius.lg,
-    marginBottom: PodarSpacing.lg,
-    ...PodarShadows.sm,
+    backgroundColor: InnonshColors.surface,
+    borderRadius: InnonshRadius.lg,
+    marginBottom: InnonshSpacing.lg,
+    ...InnonshShadows.sm,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: PodarColors.border,
+    borderColor: InnonshColors.border,
   },
   dateBlock: {
     width: 80,
-    backgroundColor: PodarColors.primaryLight + '20',
+    backgroundColor: InnonshColors.primaryLight + '20',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: PodarSpacing.md,
+    padding: InnonshSpacing.md,
   },
   contentBlock: {
     flex: 1,
-    padding: PodarSpacing.lg,
+    padding: InnonshSpacing.lg,
   },
   titleRow: {
     flexDirection: 'row',

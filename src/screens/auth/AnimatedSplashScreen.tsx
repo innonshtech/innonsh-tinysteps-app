@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { View, StyleSheet, Animated, Image, Dimensions } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { PodarColors } from '../../theme/colors';
+import { InnonshColors } from '../../theme/colors';
 import { Typography } from '../../components/ui/Typography';
 
 const { width, height } = Dimensions.get('window');
@@ -89,7 +89,7 @@ export default function AnimatedSplashScreen({ onAnimationComplete }: Props) {
     return (
         <View style={styles.container}>
             <LinearGradient
-                colors={[PodarColors.primary, '#4a148c', '#311b92']}
+                colors={[InnonshColors.primary, '#4a148c', '#311b92']}
                 style={StyleSheet.absoluteFill}
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
@@ -121,8 +121,8 @@ export default function AnimatedSplashScreen({ onAnimationComplete }: Props) {
                 </Animated.View>
 
                 <Animated.View style={[{ opacity: textFadeAnim }, styles.textContainer]}>
-                    <Typography variant="display" color={PodarColors.surface} style={styles.brandName}>
-                        Podar
+                    <Typography variant="display" color={InnonshColors.surface} style={styles.brandName}>
+                        Innonsh
                     </Typography>
                     <Typography variant="h2" color="#e1bee7" style={styles.appName}>
                         TINYSTEPS
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: PodarColors.primaryDark,
+        backgroundColor: InnonshColors.primaryDark,
         overflow: 'hidden',
     },
     bgShape1: {
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
         width: 140,
         height: 140,
         borderRadius: 36,
-        backgroundColor: PodarColors.surface,
+        backgroundColor: InnonshColors.surface,
         overflow: 'hidden',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 20 },

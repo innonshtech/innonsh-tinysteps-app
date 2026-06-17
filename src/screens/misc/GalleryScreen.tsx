@@ -6,14 +6,14 @@ import { Download, Share2, X } from 'lucide-react-native';
 
 import { AppHeader } from '../../components/layout/AppHeader';
 import { Typography } from '../../components/ui/Typography';
-import { PodarColors } from '../../theme/colors';
-import { PodarSpacing, PodarRadius } from '../../theme/spacing';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshSpacing, InnonshRadius } from '../../theme/spacing';
+import { InnonshShadows } from '../../theme/shadows';
 import { GalleryService } from '../../services/gallery.service';
 
 const { width } = Dimensions.get('window');
-const COLUMN_SPACING = PodarSpacing.md;
-const IMAGE_WIDTH = (width - (PodarSpacing.lg * 2) - COLUMN_SPACING) / 2;
+const COLUMN_SPACING = InnonshSpacing.md;
+const IMAGE_WIDTH = (width - (InnonshSpacing.lg * 2) - COLUMN_SPACING) / 2;
 
 export default function GalleryScreen({ route }: any) {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -63,7 +63,7 @@ export default function GalleryScreen({ route }: any) {
               resizeMode="cover"
             />
             <View style={styles.imageOverlay}>
-              <Typography variant="caption" color={PodarColors.surface} numberOfLines={1}>
+              <Typography variant="caption" color={InnonshColors.surface} numberOfLines={1}>
                 {img.title}
               </Typography>
             </View>
@@ -90,7 +90,7 @@ export default function GalleryScreen({ route }: any) {
             style={styles.closeButton}
             onPress={() => setSelectedImage(null)}
           >
-            <X size={32} color={PodarColors.surface} />
+            <X size={32} color={InnonshColors.surface} />
           </TouchableOpacity>
 
           <Image
@@ -101,13 +101,13 @@ export default function GalleryScreen({ route }: any) {
 
           <View style={styles.lightboxActions}>
             <TouchableOpacity style={styles.actionBtn}>
-              <Share2 size={24} color={PodarColors.surface} />
-              <Typography variant="caption" color={PodarColors.surface} style={{ marginTop: 4 }}>Share</Typography>
+              <Share2 size={24} color={InnonshColors.surface} />
+              <Typography variant="caption" color={InnonshColors.surface} style={{ marginTop: 4 }}>Share</Typography>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.actionBtn}>
-              <Download size={24} color={PodarColors.surface} />
-              <Typography variant="caption" color={PodarColors.surface} style={{ marginTop: 4 }}>Save</Typography>
+              <Download size={24} color={InnonshColors.surface} />
+              <Typography variant="caption" color={InnonshColors.surface} style={{ marginTop: 4 }}>Save</Typography>
             </TouchableOpacity>
           </View>
         </View>
@@ -119,10 +119,10 @@ export default function GalleryScreen({ route }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: PodarColors.background,
+    backgroundColor: InnonshColors.background,
   },
   scrollContent: {
-    padding: PodarSpacing.lg,
+    padding: InnonshSpacing.lg,
     paddingBottom: 40,
   },
   masonryGrid: {
@@ -135,9 +135,9 @@ const styles = StyleSheet.create({
   imageCard: {
     width: '100%',
     marginBottom: COLUMN_SPACING,
-    borderRadius: PodarRadius.lg,
+    borderRadius: InnonshRadius.lg,
     overflow: 'hidden',
-    backgroundColor: PodarColors.border,
+    backgroundColor: InnonshColors.border,
   },
   image: {
     width: '100%',
@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    padding: PodarSpacing.sm,
-    paddingTop: PodarSpacing.xl,
+    padding: InnonshSpacing.sm,
+    paddingTop: InnonshSpacing.xl,
     backgroundColor: 'rgba(0,0,0,0.5)',
   },
   lightbox: {
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
   },
   actionBtn: {
     alignItems: 'center',
-    padding: PodarSpacing.lg,
+    padding: InnonshSpacing.lg,
   }
 });
 
