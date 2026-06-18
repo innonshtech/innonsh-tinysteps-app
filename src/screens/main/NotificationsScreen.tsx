@@ -36,6 +36,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Typography } from '../../components/ui/Typography';
 import { Colors } from '../../constants/colors';
+import { InnonshColors } from '../../theme/colors';
 import { apiClient } from '../../api/client';
 import { useNotificationStore } from '../../store/notificationStore';
 
@@ -428,7 +429,7 @@ export default function NotificationsScreen() {
       {/* Premium Header Container */}
       <View style={[styles.headerContainer, { paddingTop: insets.top + 20 }]}>
         <LinearGradient
-          colors={[UI_COLORS.purple, UI_COLORS.purpleDark]}
+          colors={[InnonshColors.primary, InnonshColors.primaryDark]}
           style={StyleSheet.absoluteFill}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -564,7 +565,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 32,
     borderBottomRightRadius: 32,
     overflow: 'hidden',
-    shadowColor: UI_COLORS.purple,
+    shadowColor: InnonshColors.primary,
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.2,
     shadowRadius: 16,

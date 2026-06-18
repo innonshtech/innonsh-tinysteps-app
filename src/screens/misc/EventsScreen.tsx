@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text, Animated } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Calendar as CalendarIcon, MapPin, Clock } from 'lucide-react-native';
+import { Calendar as CalendarIcon, MapPin, Clock, ChevronLeft, Bell } from 'lucide-react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { AppHeader } from '../../components/layout/AppHeader';
 import { Typography } from '../../components/ui/Typography';
@@ -13,10 +15,12 @@ import { InnonshShadows } from '../../theme/shadows';
 import { EventsService } from '../../services/events.service';
 import { useChildStore } from '../../store/childStore';
 
-export default function EventsScreen({ route }: any) {
+export default function EventsScreen({ route, navigation }: any) {
   const selectedChild = useChildStore(state => state.selectedChild);
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const insets = useSafeAreaInsets();
+  const headerFade = React.useRef(new Animated.Value(1)).current;
 
   React.useEffect(() => {
     if (selectedChild) {
@@ -115,7 +119,31 @@ export default function EventsScreen({ route }: any) {
 
   return (
     <View style={styles.container}>
-      <AppHeader title="Events Calendar" showBack />
+      {/* Header Section */}
+      <Animated.View style={[styles.headerContainer, { paddingTop: insets.top + 16, opacity: headerFade }]}>
+        <LinearGradient
+          colors={[InnonshColors.primary, InnonshColors.primaryDark]}
+          style={StyleSheet.absoluteFill}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+        />
+        
+        <View style={styles.headerUpperInner}>
+          <View style={styles.headerLeft}>
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()} 
+              style={styles.backButton}
+              activeOpacity={0.7}
+            >
+              <ChevronLeft color="#fff" size={28} />
+            </TouchableOpacity>
+            <Text style={styles.headerScreenTitle}>Events Calendar</Text>
+          </View>
+          <TouchableOpacity style={styles.bellBtn}>
+            <Bell color="#fff" size={20} />
+          </TouchableOpacity>
+        </View>
+      </Animated.View>
 
       <FlatList
         data={events}
@@ -132,6 +160,49 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: InnonshColors.background,
+  },
+  headerContainer: {
+    paddingBottom: 24,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
+    paddingHorizontal: 24,
+    overflow: 'hidden',
+    zIndex: 10,
+    elevation: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    backgroundColor: InnonshColors.primary,
+  },
+  headerUpperInner: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backButton: {
+    marginRight: 10,
+    marginLeft: -6,
+    padding: 4,
+  },
+  headerScreenTitle: {
+    fontFamily: 'GoogleSans-Bold',
+    fontSize: 24,
+    lineHeight: 32,
+    color: '#fff',
+  },
+  bellBtn: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   listContent: {
     padding: InnonshSpacing.lg,

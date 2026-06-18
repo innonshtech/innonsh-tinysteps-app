@@ -25,6 +25,7 @@ import notifee, {
 } from '@notifee/react-native';
 import { Platform, PermissionsAndroid, Permission } from 'react-native';
 import { apiClient } from '../api/client';
+import { handleNotificationOpen } from './notification.handler';
 
 
 // ── Android Notification Channels ────────────────────────────────────────────

@@ -176,26 +176,28 @@ export default function FeesScreen() {
           end={{ x: 1, y: 1 }}
         />
         
-        <View style={styles.headerTop}>
-          <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-            <ChevronLeft color="#fff" size={28} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>TinySteps</Text>
+        <View style={styles.headerUpperInner}>
+          <View style={styles.headerLeft}>
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()} 
+              style={styles.backButton}
+              activeOpacity={0.7}
+            >
+              <ChevronLeft color="#fff" size={28} />
+            </TouchableOpacity>
+            <Text style={styles.headerScreenTitle}>Fees Overview</Text>
+          </View>
           <TouchableOpacity style={styles.bellBtn}>
             <Bell color="#fff" size={20} />
           </TouchableOpacity>
         </View>
 
-        <View style={styles.headerBottom}>
-          <View>
-            <Text style={styles.headerSubtitle}>Academic Year 2023-24</Text>
-            <Text style={styles.headerScreenTitle}>Fees Overview</Text>
-          </View>
-        </View>
+        <Text style={styles.headerSubtitle}>Academic Year 2023-24</Text>
       </Animated.View>
 
       <ScrollView 
-        contentContainerStyle={styles.scrollContent}
+        style={{ flex: 1 }}
+        contentContainerStyle={[styles.scrollContent, { paddingBottom: insets.bottom + 100 }]}
         showsVerticalScrollIndicator={false}
       >
         <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideYAnim }] }}>
@@ -384,16 +386,20 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     backgroundColor: BrandColors.primary,
   },
-  headerTop: {
+  headerUpperInner: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 8,
   },
-  headerTitle: {
-    fontFamily: 'GoogleSans-Bold',
-    fontSize: 24,
-    color: '#fff',
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backButton: {
+    marginRight: 10,
+    marginLeft: -6,
+    padding: 4,
   },
   bellBtn: {
     width: 36,
@@ -402,11 +408,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  headerBottom: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
   },
   headerSubtitle: {
     fontFamily: 'GoogleSans-Medium',
@@ -418,17 +419,19 @@ const styles = StyleSheet.create({
   },
   headerScreenTitle: {
     fontFamily: 'GoogleSans-Bold',
-    fontSize: 28,
+    fontSize: 24,
+    lineHeight: 32,
     color: '#fff',
   },
   scrollContent: {
     paddingHorizontal: 24,
-    paddingBottom: 120, // Tab bar padding
+    paddingTop: 8,
   },
   summaryGrid: {
     flexDirection: 'row',
-    marginTop: -32, // Pull up over header
+    marginTop: 24,
     gap: 16,
+
     marginBottom: 32,
   },
   summaryCard: {

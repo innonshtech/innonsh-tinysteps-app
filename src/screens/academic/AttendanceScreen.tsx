@@ -208,27 +208,23 @@ export default function AttendanceScreen() {
           end={{ x: 1, y: 1 }}
         />
         
-        <View style={styles.headerTop}>
-          <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-            <ChevronLeft color="#fff" size={28} />
-          </TouchableOpacity>
-          <Text style={styles.headerTitle}>TinySteps</Text>
+        <View style={styles.headerUpperInner}>
+          <View style={styles.headerLeft}>
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()} 
+              style={styles.backButton}
+              activeOpacity={0.7}
+            >
+              <ChevronLeft color="#fff" size={28} />
+            </TouchableOpacity>
+            <Text style={styles.headerScreenTitle}>Attendance</Text>
+          </View>
           <TouchableOpacity style={styles.bellBtn}>
             <Bell color="#fff" size={20} />
           </TouchableOpacity>
         </View>
 
-        <View style={styles.headerBottom}>
-          <View>
-            <Text style={styles.headerSubtitle}>Analytics</Text>
-            <Text style={styles.headerScreenTitle}>Attendance</Text>
-          </View>
-          
-          <View style={styles.monthSelector}>
-            <CalendarIcon color={brandColors.primary} size={16} />
-            <Text style={styles.monthSelectorText}>{getMonthName(selectedMonth)}</Text>
-          </View>
-        </View>
+        <Text style={styles.headerSubtitle}>Analytics</Text>
       </Animated.View>
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
@@ -406,16 +402,20 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     backgroundColor: brandColors.primary,
   },
-  headerTop: {
+  headerUpperInner: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 8,
   },
-  headerTitle: {
-    fontFamily: 'GoogleSans-Bold',
-    fontSize: 24,
-    color: '#fff',
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backButton: {
+    marginRight: 10,
+    marginLeft: -6,
+    padding: 4,
   },
   bellBtn: {
     width: 36,
@@ -424,11 +424,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.15)',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  headerBottom: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
   },
   headerSubtitle: {
     fontFamily: 'GoogleSans-Medium',
@@ -440,23 +435,11 @@ const styles = StyleSheet.create({
   },
   headerScreenTitle: {
     fontFamily: 'GoogleSans-Bold',
-    fontSize: 28,
+    fontSize: 24,
+    lineHeight: 32,
     color: '#fff',
   },
-  monthSelector: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
-  },
-  monthSelectorText: {
-    fontFamily: 'GoogleSans-SemiBold',
-    fontSize: 14,
-    color: brandColors.textPrimary,
-    marginLeft: 6,
-  },
+
   scrollContent: {
     padding: 24,
     paddingBottom: 100, // Bottom Nav spacing
