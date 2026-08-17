@@ -13,6 +13,7 @@ import { useChildStore } from '../../store/childStore';
 import { useNotificationStore } from '../../store/notificationStore';
 import { BottomTabParamList } from '../../navigation/BottomTabNavigator';
 import { DashboardService } from '../../services/dashboard.service';
+import { getFirstName } from '../../utils/formatName';
 
 type NavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabParamList, 'Home'>,
@@ -137,6 +138,7 @@ export default function HomeScreen() {
   const formattedDate = new Date().toLocaleDateString('en-US', dateOptions);
   
   const statusColors = getStatusColor(attendanceStatus);
+  const greetingName = getFirstName(selectedChild?.name || user?.name, 'Parent');
 
   const renderChildPill = ({ item }: { item: any }) => {
     const isSelected = selectedChild?._id === item._id;
@@ -147,7 +149,7 @@ export default function HomeScreen() {
         activeOpacity={0.8}
       >
         <Text style={[styles.childPillText, isSelected && styles.childPillTextSelected]}>
-          {item.name.split(' ')[0]}
+          {getFirstName(item.name, 'Child')}
         </Text>
       </TouchableOpacity>
     );
@@ -179,7 +181,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
           <View style={styles.greetingContainer}>
-            <Text style={styles.greetingText}>{getGreeting()} {selectedChild?.name?.split(' ')[0] || user?.name || 'Parent'}</Text>
+            <Text style={styles.greetingText}>{getGreeting()} {greetingName}</Text>
             <Text style={styles.dateText}>Today is {formattedDate}</Text>
           </View>
           

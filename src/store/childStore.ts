@@ -24,6 +24,7 @@ interface ChildState {
 }
 
 import { apiClient } from '../api/client';
+import { mapStudentToChild } from '../utils/formatName';
 
 export const useChildStore = create<ChildState>((set) => ({
     children: [],
@@ -40,18 +41,15 @@ export const useChildStore = create<ChildState>((set) => ({
         set({ isLoading: true });
         try {
             const response = await apiClient.get('/parent/students');
-            const students = response.data.students || [];
+            const payload = response.data || {};
+            const students =
+                payload.students ||
+                payload.data?.students ||
+                (Array.isArray(payload.data) ? payload.data : []);
 
-            // Map backend fields to the store requirements if needed
-            // The backend returns: _id, firstName, lastName, classId, admissionNo, etc.
-            const mappedStudents: Child[] = students.map((s: any) => ({
-                _id: s._id,
-                name: `${s.firstName} ${s.lastName}`,
-                admissionNo: s.admissionNo || '',
-                classId: s.classId ? (typeof s.classId === 'object' ? s.classId._id : s.classId) : '',
-                className: s.classId && typeof s.classId === 'object' ? s.classId.name : 'Unknown Class',
-                avatarUrl: s.profilePicture || undefined,
-            }));
+            const mappedStudents: Child[] = (students as Record<string, unknown>[]).map((student) =>
+                mapStudentToChild(student)
+            );
 
             set({ children: mappedStudents, selectedChild: mappedStudents[0] || null });
         } catch (e) {

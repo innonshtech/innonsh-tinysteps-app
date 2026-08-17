@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import * as Keychain from 'react-native-keychain';
 import { apiClient } from '../api/client';
+import { formatPersonName } from '../utils/formatName';
 
 export interface User {
     id: string;
@@ -33,8 +34,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     login: async (token: string, user: User) => {
         try {
+            const normalizedUser: User = {
+                ...user,
+                name: formatPersonName(user, 'Parent'),
+            };
             await Keychain.setGenericPassword('userToken', token);
-            set({ token, user, isAuthenticated: true });
+            set({ token, user: normalizedUser, isAuthenticated: true });
 
             // Register FCM token after login (lazy import to avoid circular deps)
             try {
@@ -82,10 +87,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             if (token) {
                 try {
                     // Verify token by fetching user profile
-                    const response = await apiClient.get('/auth/me');
+                    const response = await apiClient.get('/auth/profile');
+                    const rawUser = response.data.user || response.data;
+                    const normalizedUser: User = {
+                        ...rawUser,
+                        name: formatPersonName(rawUser, 'Parent'),
+                    };
                     set({
                         token,
-                        user: response.data.user || response.data, // adjust depending on API response
+                        user: normalizedUser,
                         isAuthenticated: true,
                         isLoading: false,
                     });
