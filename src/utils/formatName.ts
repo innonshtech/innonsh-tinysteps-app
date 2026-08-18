@@ -37,17 +37,34 @@ export function getFirstName(fullName: string | undefined | null, fallback = 'Pa
 
 function resolveClassInfo(student: Record<string, unknown>) {
   const classInfo = student.class as { id?: string; _id?: string; name?: string; section?: string } | string | null | undefined;
+  const classIdField = student.classId;
 
-  const classId =
-    (student.classId as string | undefined) ||
-    (student.class_id as string | undefined) ||
-    (typeof classInfo === 'object' && classInfo ? classInfo.id || classInfo._id : undefined) ||
-    '';
+  let classId = '';
+  let className = 'Unknown Class';
 
-  const className =
-    (student.className as string | undefined) ||
-    (typeof classInfo === 'object' && classInfo ? classInfo.name : undefined) ||
-    'Unknown Class';
+  if (classIdField) {
+    if (typeof classIdField === 'object' && classIdField !== null) {
+      const classObj = classIdField as any;
+      classId = classObj._id || classObj.id || '';
+      className = classObj.name || 'Unknown Class';
+    } else {
+      classId = String(classIdField);
+    }
+  }
+
+  // Fallback / legacy checks
+  if (!classId && classInfo) {
+    if (typeof classInfo === 'object' && classInfo !== null) {
+      classId = classInfo.id || classInfo._id || '';
+      className = classInfo.name || 'Unknown Class';
+    } else {
+      classId = String(classInfo);
+    }
+  }
+
+  if (student.className) {
+    className = String(student.className);
+  }
 
   return { classId, className };
 }

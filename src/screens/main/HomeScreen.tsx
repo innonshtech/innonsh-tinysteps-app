@@ -199,12 +199,10 @@ export default function HomeScreen() {
         <Animated.View style={{ opacity: fadeAnim, marginTop: -40, paddingHorizontal: 24 }}>
           {/* Student Summary Card */}
           <View style={styles.studentCard}>
-            <View style={styles.studentTopRow}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.studentName}>{selectedChild?.name || 'Student Name'}</Text>
-                <Text style={styles.studentDetails}>Class {selectedChild?.className || '--'} • Roll No. {selectedChild?.admissionNo || '--'}</Text>
-              </View>
-              <View style={[styles.statusBadge, { backgroundColor: statusColors.bg }]}>
+            <View style={styles.studentHeaderContainer}>
+              <Text style={styles.studentName}>{selectedChild?.name || 'Student Name'}</Text>
+              <Text style={styles.studentDetails}>Class: {selectedChild?.className || '--'}</Text>
+              <View style={[styles.statusBadge, { backgroundColor: statusColors.bg, marginTop: 8, alignSelf: 'flex-start' }]}>
                 <Text style={[styles.statusText, { color: statusColors.text }]}>{attendanceStatus}</Text>
               </View>
             </View>
@@ -409,9 +407,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 30,
   },
-  studentTopRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  studentHeaderContainer: {
+    flexDirection: 'column',
     alignItems: 'flex-start',
   },
   studentName: {

@@ -238,7 +238,7 @@ export default function AttendanceScreen() {
               <View style={styles.studentSummaryRow}>
                 <View>
                   <Text style={styles.studentName}>{selectedChild?.name}</Text>
-                  <Text style={styles.studentMeta}>Class {selectedChild?.className} • Roll No. {selectedChild?.admissionNo}</Text>
+                  <Text style={styles.studentMeta}>Class: {selectedChild?.className}</Text>
                 </View>
               </View>
 
