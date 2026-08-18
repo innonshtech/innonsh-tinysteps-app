@@ -20,9 +20,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Typography } from '../../components/ui/Typography';
 import { Button } from '../../components/ui/Button';
-import { PodarColors } from '../../theme/colors';
-import { PodarSpacing, PodarRadius } from '../../theme/spacing';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshSpacing, InnonshRadius } from '../../theme/spacing';
+import { InnonshShadows } from '../../theme/shadows';
 import { apiClient } from '../../api/client';
 import { useAuthStore } from '../../store/authStore';
 
@@ -144,7 +144,7 @@ export default function LoginScreen() {
         {/* Hero Header */}
         <View style={styles.heroHeader}>
           <LinearGradient
-            colors={[PodarColors.primary, PodarColors.secondary]}
+            colors={[InnonshColors.primary, InnonshColors.secondary]}
             style={StyleSheet.absoluteFill}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
@@ -160,7 +160,7 @@ export default function LoginScreen() {
                 resizeMode="contain" 
               />
             </View>
-            <Text style={styles.heroTitle}>Podar TinySteps Parent App</Text>
+            <Text style={styles.heroTitle}>Innonsh TinySteps Parent App</Text>
             <Text style={styles.heroSubtitle}>Manage your child's learning journey effortlessly with our premium digital companion.</Text>
           </Animated.View>
         </View>
@@ -180,11 +180,11 @@ export default function LoginScreen() {
               <Animated.View style={[styles.inputWrapper, { transform: [{ translateX: inputSlide1 }] }]}>
                 <Text style={styles.inputLabel}>Enter registered email</Text>
                 <View style={[styles.inputContainer, emailFocused && styles.inputFocused]}>
-                  <Mail color={emailFocused ? PodarColors.primary : PodarColors.textSecondary} size={20} style={styles.inputIcon} />
+                  <Mail color={emailFocused ? InnonshColors.primary : InnonshColors.textSecondary} size={20} style={styles.inputIcon} />
                   <TextInput
                     style={styles.input}
                     placeholder="email@example.com"
-                    placeholderTextColor={PodarColors.textSecondary}
+                    placeholderTextColor={InnonshColors.textSecondary}
                     value={email}
                     onChangeText={setEmail}
                     keyboardType="email-address"
@@ -200,11 +200,11 @@ export default function LoginScreen() {
               <Animated.View style={[styles.inputWrapper, { transform: [{ translateX: inputSlide2 }] }]}>
                 <Text style={styles.inputLabel}>Enter password</Text>
                 <View style={[styles.inputContainer, passwordFocused && styles.inputFocused]}>
-                  <Lock color={passwordFocused ? PodarColors.primary : PodarColors.textSecondary} size={20} style={styles.inputIcon} />
+                  <Lock color={passwordFocused ? InnonshColors.primary : InnonshColors.textSecondary} size={20} style={styles.inputIcon} />
                   <TextInput
                     style={styles.input}
                     placeholder="••••••••"
-                    placeholderTextColor={PodarColors.textSecondary}
+                    placeholderTextColor={InnonshColors.textSecondary}
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!showPassword}
@@ -215,9 +215,9 @@ export default function LoginScreen() {
                   />
                   <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.eyeIcon} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
                     {showPassword ? (
-                      <EyeOff color={PodarColors.primary} size={20} />
+                      <EyeOff color={InnonshColors.primary} size={20} />
                     ) : (
-                      <Eye color={PodarColors.textSecondary} size={20} />
+                      <Eye color={InnonshColors.textSecondary} size={20} />
                     )}
                   </TouchableOpacity>
                 </View>
@@ -243,7 +243,7 @@ export default function LoginScreen() {
                   disabled={loading}
                 >
                   <LinearGradient
-                    colors={[PodarColors.primary, PodarColors.secondary]}
+                    colors={[InnonshColors.primary, InnonshColors.secondary]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                     style={styles.loginBtnGradient}
@@ -262,7 +262,7 @@ export default function LoginScreen() {
                   activeOpacity={0.7}
                   onPress={handleContactSchool}
                 >
-                  <School color={PodarColors.primary} size={18} />
+                  <School color={InnonshColors.primary} size={18} />
                   <Text style={styles.contactBtnText}>Contact School</Text>
                 </TouchableOpacity>
               </View>
@@ -273,19 +273,19 @@ export default function LoginScreen() {
           {/* Trust Section Grid */}
           <Animated.View style={[styles.trustGrid, { opacity: fadeAnim }]}>
             <View style={styles.trustCard}>
-              <ShieldCheck color={PodarColors.primary} size={28} />
+              <ShieldCheck color={InnonshColors.primary} size={28} />
               <Text style={styles.trustText}>Secure Parent{'\n'}Access</Text>
             </View>
             <View style={styles.trustCard}>
-              <Bell color={PodarColors.primary} size={28} />
+              <Bell color={InnonshColors.primary} size={28} />
               <Text style={styles.trustText}>Real-time{'\n'}Updates</Text>
             </View>
             <View style={styles.trustCard}>
-              <CalendarIcon color={PodarColors.primary} size={28} />
+              <CalendarIcon color={InnonshColors.primary} size={28} />
               <Text style={styles.trustText}>Attendance{'\n'}Tracking</Text>
             </View>
             <View style={styles.trustCard}>
-              <ClipboardList color={PodarColors.primary} size={28} />
+              <ClipboardList color={InnonshColors.primary} size={28} />
               <Text style={styles.trustText}>Homework{'\n'}& Events</Text>
             </View>
           </Animated.View>
@@ -293,7 +293,7 @@ export default function LoginScreen() {
           {/* Footer */}
           <Animated.View style={[styles.footer, { opacity: fadeAnim }]}>
             <View style={styles.footerLine} />
-            <Text style={styles.footerText}>Powered by Podar Education</Text>
+            <Text style={styles.footerText}>Powered by Innonsh Education</Text>
             <View style={styles.footerLine} />
           </Animated.View>
 
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.98)',
     borderRadius: 32,
     padding: 32,
-    shadowColor: PodarColors.primary,
+    shadowColor: InnonshColors.primary,
     shadowOffset: { width: 0, height: 15 },
     shadowOpacity: 0.08,
     shadowRadius: 30,
@@ -383,13 +383,13 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontFamily: 'GoogleSans-Bold',
     fontSize: 24,
-    color: PodarColors.primary,
+    color: InnonshColors.primary,
     marginBottom: 4,
   },
   cardSubtitle: {
     fontFamily: 'GoogleSans-Medium',
     fontSize: 15,
-    color: PodarColors.textSecondary,
+    color: InnonshColors.textSecondary,
   },
   formContainer: {
     width: '100%',
@@ -400,7 +400,7 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontFamily: 'GoogleSans-Medium',
     fontSize: 13,
-    color: PodarColors.textSecondary,
+    color: InnonshColors.textSecondary,
     marginBottom: 8,
     marginLeft: 4,
   },
@@ -415,7 +415,7 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   inputFocused: {
-    borderColor: PodarColors.primary + '80',
+    borderColor: InnonshColors.primary + '80',
     backgroundColor: '#fff',
   },
   inputIcon: {
@@ -424,7 +424,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
-    color: PodarColors.textPrimary,
+    color: InnonshColors.textPrimary,
     fontFamily: 'GoogleSans-Medium',
   },
   eyeIcon: {
@@ -445,23 +445,23 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 6,
     borderWidth: 1.5,
-    borderColor: PodarColors.border,
+    borderColor: InnonshColors.border,
     marginRight: 8,
     backgroundColor: '#fff',
   },
   rememberMeText: {
     fontFamily: 'GoogleSans-Medium',
     fontSize: 13,
-    color: PodarColors.textSecondary,
+    color: InnonshColors.textSecondary,
   },
   forgotPasswordText: {
     fontFamily: 'GoogleSans-Bold',
     fontSize: 13,
-    color: PodarColors.secondary,
+    color: InnonshColors.secondary,
   },
   loginBtnWrapper: {
     width: '100%',
-    shadowColor: PodarColors.primary,
+    shadowColor: InnonshColors.primary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.25,
     shadowRadius: 15,
@@ -489,7 +489,7 @@ const styles = StyleSheet.create({
   contactHint: {
     fontFamily: 'GoogleSans-Medium',
     fontSize: 14,
-    color: PodarColors.textSecondary,
+    color: InnonshColors.textSecondary,
     marginBottom: 16,
   },
   contactBtn: {
@@ -500,13 +500,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     borderRadius: 24,
     borderWidth: 1,
-    borderColor: PodarColors.primary + '30',
+    borderColor: InnonshColors.primary + '30',
     backgroundColor: '#fff',
   },
   contactBtnText: {
     fontFamily: 'GoogleSans-Bold',
     fontSize: 15,
-    color: PodarColors.primary,
+    color: InnonshColors.primary,
     marginLeft: 8,
   },
   trustGrid: {
@@ -528,7 +528,7 @@ const styles = StyleSheet.create({
   trustText: {
     fontFamily: 'GoogleSans-Medium',
     fontSize: 13,
-    color: PodarColors.textSecondary,
+    color: InnonshColors.textSecondary,
     textAlign: 'center',
     marginTop: 12,
     lineHeight: 18,

@@ -27,6 +27,7 @@ import { Platform, PermissionsAndroid, Permission } from 'react-native';
 import { apiClient } from '../api/client';
 import { handleNotificationOpen } from './notification.handler';
 
+
 // ── Android Notification Channels ────────────────────────────────────────────
 // Each category gets its own channel for granular user control in Settings
 export const NOTIFICATION_CHANNELS = {
@@ -90,7 +91,7 @@ export async function createNotificationChannels(): Promise<void> {
       importance: channel.importance,
       vibration: true,
       lights: true,
-      lightColor: '#68047d', // Podar brand purple
+      lightColor: '#68047d', // Innonsh brand purple
     });
   }
 }
@@ -218,7 +219,7 @@ export async function displayNotification(
 ): Promise<void> {
   const { notification, data } = remoteMessage;
 
-  const title = notification?.title ?? 'Podar TinySteps';
+  const title = notification?.title ?? 'Innonsh TinySteps';
   const body = notification?.body ?? '';
   const channelId = (data?.channelId as string | undefined) ?? 'tinysteps_general';
 

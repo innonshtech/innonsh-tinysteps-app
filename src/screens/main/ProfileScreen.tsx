@@ -9,6 +9,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Typography } from '../../components/ui/Typography';
 import { Avatar } from '../../components/ui/Avatar';
 import { Colors } from '../../constants/colors';
+import { InnonshColors } from '../../theme/colors';
 import { useAuthStore } from '../../store/authStore';
 import { useChildStore } from '../../store/childStore';
 import { RootStackParamList } from '../../navigation/AppNavigator';
@@ -108,7 +109,7 @@ export default function ProfileScreen() {
       {/* Premium Gradient Header */}
       <View style={[styles.headerContainer, { paddingTop: insets.top || 40 }]}>
         <LinearGradient
-          colors={[Colors.primary, '#4338CA']}
+          colors={[InnonshColors.primary, InnonshColors.primaryDark]}
           style={StyleSheet.absoluteFill}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
@@ -117,23 +118,25 @@ export default function ProfileScreen() {
         <View style={styles.headerShape1} />
         <View style={styles.headerShape2} />
 
-        <Animated.View style={[styles.navBar, { opacity: headerFade, transform: [{ translateY: headerSlide }] }]}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            {navigation.canGoBack() && (
-              <TouchableOpacity 
-                onPress={() => navigation.goBack()} 
-                style={styles.backButton}
-                activeOpacity={0.7}
-              >
-                <ChevronLeft color={Colors.white} size={28} />
-              </TouchableOpacity>
-            )}
-            <Typography variant="h2" weight="bold" color={Colors.white}>
-              My Profile
-            </Typography>
-          </View>
-        </Animated.View>
       </View>
+
+      {/* Sticky NavBar */}
+      <Animated.View style={[styles.navBar, { paddingTop: (insets.top || 40) + 12, opacity: headerFade, transform: [{ translateY: headerSlide }] }]}>
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          {navigation.canGoBack() && (
+            <TouchableOpacity 
+              onPress={() => navigation.goBack()} 
+              style={styles.backButton}
+              activeOpacity={0.7}
+            >
+              <ChevronLeft color={Colors.white} size={28} />
+            </TouchableOpacity>
+          )}
+          <Typography variant="h2" weight="bold" color={Colors.white}>
+            My Profile
+          </Typography>
+        </View>
+      </Animated.View>
 
       <ScrollView
         style={{ zIndex: 10, elevation: 10, backgroundColor: 'transparent' }}
@@ -158,7 +161,7 @@ export default function ProfileScreen() {
 
           <View style={styles.statsContainer}>
             <View style={styles.statBox}>
-              <Typography variant="h3" weight="bold" color={Colors.primary}>
+              <Typography variant="h3" weight="bold" color={InnonshColors.primary}>
                 {children.length}
               </Typography>
               <Typography variant="caption" weight="medium" color={Colors.textSecondary}>
@@ -167,7 +170,7 @@ export default function ProfileScreen() {
             </View>
             <View style={styles.statDivider} />
             <View style={styles.statBox}>
-              <Typography variant="h3" weight="bold" color={Colors.primary}>
+              <Typography variant="h3" weight="bold" color={InnonshColors.primary}>
                 Active
               </Typography>
               <Typography variant="caption" weight="medium" color={Colors.textSecondary}>
@@ -184,18 +187,18 @@ export default function ProfileScreen() {
           </Typography>
           <View style={styles.cardGroup}>
             {renderSettingRow(
-              <Bell size={22} color={Colors.primary} />,
+              <Bell size={22} color={InnonshColors.primary} />,
               'Push Notifications',
               'Manage your alerts and daily updates',
-              'rgba(79, 70, 229, 0.1)',
+              'rgba(131, 41, 150, 0.1)',
               undefined,
-              <Switch
-                value={pushNotificationsEnabled}
-                onValueChange={setPushNotifications}
-                trackColor={{ false: '#D1D5DB', true: Colors.primary + '80' }}
-                thumbColor={pushNotificationsEnabled ? Colors.primary : '#F4F3F4'}
-                ios_backgroundColor="#D1D5DB"
-              />
+                <Switch
+                  value={pushNotificationsEnabled}
+                  onValueChange={setPushNotifications}
+                  trackColor={{ false: '#D1D5DB', true: InnonshColors.primary + '80' }}
+                  thumbColor={pushNotificationsEnabled ? InnonshColors.primary : '#F4F3F4'}
+                  ios_backgroundColor="#D1D5DB"
+                />
             )}
             <View style={styles.separator} />
             {renderSettingRow(
@@ -274,7 +277,7 @@ const styles = StyleSheet.create({
     right: 0,
     overflow: 'hidden',
     zIndex: 1,
-    backgroundColor: Colors.primary,
+    backgroundColor: InnonshColors.primary,
   },
   headerShape1: {
     position: 'absolute',
@@ -295,11 +298,17 @@ const styles = StyleSheet.create({
     left: -50,
   },
   navBar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 20,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 24,
-    paddingVertical: 12,
+    paddingBottom: 16,
+    backgroundColor: 'rgba(131, 41, 150, 0.95)', // InnonshColors.primary with opacity
   },
   backButton: {
     marginRight: 10,
@@ -330,7 +339,7 @@ const styles = StyleSheet.create({
     padding: 32,
     alignItems: 'center',
     marginBottom: 32,
-    shadowColor: Colors.primary,
+    shadowColor: InnonshColors.primary,
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.08,
     shadowRadius: 24,
@@ -344,7 +353,7 @@ const styles = StyleSheet.create({
     padding: 4,
     backgroundColor: Colors.white,
     borderRadius: 50,
-    shadowColor: Colors.primary,
+    shadowColor: InnonshColors.primary,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 10,
@@ -403,7 +412,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     borderRadius: 24,
     marginBottom: 32,
-    shadowColor: Colors.primary,
+    shadowColor: InnonshColors.primary,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.05,
     shadowRadius: 16,

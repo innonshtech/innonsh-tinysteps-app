@@ -1,10 +1,10 @@
 import React from 'react';
 import { TouchableOpacity, ActivityIndicator, StyleSheet, ViewStyle, TextStyle } from 'react-native';
-import { PodarColors } from '../../theme/colors';
-import { PodarShadows } from '../../theme/shadows';
-import { PodarRadius, PodarSpacing } from '../../theme/spacing';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshShadows } from '../../theme/shadows';
+import { InnonshRadius, InnonshSpacing } from '../../theme/spacing';
 import { Typography } from './Typography';
-import { PodarTypography } from '../../theme/typography';
+import { InnonshTypography } from '../../theme/typography';
 import { Text } from 'react-native';
 
 interface ButtonProps {
@@ -31,32 +31,32 @@ export const Button: React.FC<ButtonProps> = ({
     icon,
 }) => {
     const getBackgroundColor = () => {
-        if (disabled) return PodarColors.secondary;
+        if (disabled) return InnonshColors.secondary;
         switch (variant) {
-            case 'primary': return PodarColors.primary;
-            case 'secondary': return PodarColors.surface;
+            case 'primary': return InnonshColors.primary;
+            case 'secondary': return InnonshColors.surface;
             case 'outline': return 'transparent';
             case 'ghost': return 'transparent';
-            default: return PodarColors.primary;
+            default: return InnonshColors.primary;
         }
     };
 
     const getTextColor = () => {
-        if (disabled) return PodarColors.textSecondary;
+        if (disabled) return InnonshColors.textSecondary;
         switch (variant) {
-            case 'primary': return PodarColors.surface;
-            case 'secondary': return PodarColors.primary;
-            case 'outline': return PodarColors.primary;
-            case 'ghost': return PodarColors.primary;
-            default: return PodarColors.surface;
+            case 'primary': return InnonshColors.surface;
+            case 'secondary': return InnonshColors.primary;
+            case 'outline': return InnonshColors.primary;
+            case 'ghost': return InnonshColors.primary;
+            default: return InnonshColors.surface;
         }
     };
 
     const borderStyles = variant === 'secondary' || variant === 'outline' 
-        ? { borderWidth: 1, borderColor: disabled ? PodarColors.border : PodarColors.primary } 
+        ? { borderWidth: 1, borderColor: disabled ? InnonshColors.border : InnonshColors.primary } 
         : {};
 
-    const shadowStyles = (variant === 'primary' && !disabled) ? PodarShadows.sm : {};
+    const shadowStyles = (variant === 'primary' && !disabled) ? InnonshShadows.sm : {};
 
     return (
         <TouchableOpacity
@@ -79,9 +79,9 @@ export const Button: React.FC<ButtonProps> = ({
                     {icon && icon}
                     <Text
                         style={[
-                            PodarTypography.button,
+                            InnonshTypography.button,
                             { color: getTextColor(), textAlign: 'center' },
-                            icon ? { marginLeft: PodarSpacing.sm } : null,
+                            icon ? { marginLeft: InnonshSpacing.sm } : null,
                             textStyle
                         ]}
                     >
@@ -98,10 +98,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: PodarRadius.pill,
+        borderRadius: InnonshRadius.pill,
     },
-    small: { paddingVertical: PodarSpacing.sm, paddingHorizontal: PodarSpacing.md },
-    medium: { paddingVertical: PodarSpacing.md, paddingHorizontal: PodarSpacing.lg },
-    large: { paddingVertical: PodarSpacing.lg, paddingHorizontal: PodarSpacing.xl },
+    small: { paddingVertical: InnonshSpacing.sm, paddingHorizontal: InnonshSpacing.md },
+    medium: { paddingVertical: InnonshSpacing.md, paddingHorizontal: InnonshSpacing.lg },
+    large: { paddingVertical: InnonshSpacing.lg, paddingHorizontal: InnonshSpacing.xl },
 });
 

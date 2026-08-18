@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 import { Colors } from '../../constants/colors';
+import { InnonshColors } from '../../theme/colors';
 import { Typography } from '../ui/Typography';
 
 interface AvatarProps {
@@ -29,7 +30,7 @@ export const Avatar: React.FC<AvatarProps> = ({ name, size = 48, style }) => {
                     width: size,
                     height: size,
                     borderRadius: size / 2,
-                    backgroundColor: Colors.primary,
+                    backgroundColor: InnonshColors.primary,
                 },
                 style,
             ]}

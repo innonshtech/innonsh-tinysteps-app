@@ -9,9 +9,9 @@ import { AppHeader } from '../../components/layout/AppHeader';
 import { Typography } from '../../components/ui/Typography';
 import { Button } from '../../components/ui/Button';
 import { StatusBadge, BadgeStatus } from '../../components/ui/StatusBadge';
-import { PodarColors } from '../../theme/colors';
-import { PodarSpacing, PodarRadius } from '../../theme/spacing';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshSpacing, InnonshRadius } from '../../theme/spacing';
+import { InnonshShadows } from '../../theme/shadows';
 import { apiClient } from '../../api/client';
 import { useChildStore } from '../../store/childStore';
 import { generateReceipt } from '../../utils/receiptGenerator';
@@ -109,8 +109,8 @@ export default function FeeDetailScreen({ route, navigation }: any) {
       <View style={styles.container}>
         <AppHeader title="Fee Details" showBack />
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={PodarColors.primary} />
-          <Typography variant="body" color={PodarColors.textSecondary} style={{ marginTop: 12 }}>
+          <ActivityIndicator size="large" color={InnonshColors.primary} />
+          <Typography variant="body" color={InnonshColors.textSecondary} style={{ marginTop: 12 }}>
             Fetching details...
           </Typography>
         </View>
@@ -123,7 +123,7 @@ export default function FeeDetailScreen({ route, navigation }: any) {
       <View style={styles.container}>
         <AppHeader title="Fee Details" showBack />
         <View style={styles.loadingContainer}>
-          <Typography variant="body" color={PodarColors.textSecondary}>
+          <Typography variant="body" color={InnonshColors.textSecondary}>
             Fee details not found.
           </Typography>
         </View>
@@ -144,23 +144,23 @@ export default function FeeDetailScreen({ route, navigation }: any) {
         <View style={styles.summaryCard}>
           <View style={styles.headerRow}>
             <View style={styles.iconContainer}>
-              <Receipt size={24} color={PodarColors.primary} />
+              <Receipt size={24} color={InnonshColors.primary} />
             </View>
             <View style={{ flex: 1, marginRight: 8 }}>
-              <Typography variant="h4" color={PodarColors.textPrimary}>{feeDetails.period}</Typography>
-              <Typography variant="caption" color={PodarColors.textSecondary}>{feeDetails.studentName} • {feeDetails.class}</Typography>
+              <Typography variant="h4" color={InnonshColors.textPrimary}>{feeDetails.period}</Typography>
+              <Typography variant="caption" color={InnonshColors.textSecondary}>{feeDetails.studentName} • {feeDetails.class}</Typography>
             </View>
             <StatusBadge label={label} status={color} />
           </View>
 
           <View style={styles.amountRow}>
             <View>
-              <Typography variant="caption" color={PodarColors.textSecondary}>Total Amount</Typography>
-              <Typography variant="h2" color={PodarColors.textPrimary}>{formatCurrency(feeDetails.totalAmount)}</Typography>
+              <Typography variant="caption" color={InnonshColors.textSecondary}>Total Amount</Typography>
+              <Typography variant="h2" color={InnonshColors.textPrimary}>{formatCurrency(feeDetails.totalAmount)}</Typography>
             </View>
             <View style={{ alignItems: 'flex-end' }}>
-              <Typography variant="caption" color={PodarColors.textSecondary}>Due Date</Typography>
-              <Typography variant="body" color={isDue ? PodarColors.error : PodarColors.textPrimary}>{feeDetails.dueDate}</Typography>
+              <Typography variant="caption" color={InnonshColors.textSecondary}>Due Date</Typography>
+              <Typography variant="body" color={isDue ? InnonshColors.error : InnonshColors.textPrimary}>{feeDetails.dueDate}</Typography>
             </View>
           </View>
         </View>
@@ -171,37 +171,37 @@ export default function FeeDetailScreen({ route, navigation }: any) {
         <View style={styles.detailCard}>
           {feeDetails.items.map((item, index) => (
             <View key={index} style={styles.itemRow}>
-              <Typography variant="body" color={PodarColors.textPrimary}>{item.name}</Typography>
-              <Typography variant="body" color={PodarColors.textPrimary}>{formatCurrency(item.amount)}</Typography>
+              <Typography variant="body" color={InnonshColors.textPrimary}>{item.name}</Typography>
+              <Typography variant="body" color={InnonshColors.textPrimary}>{formatCurrency(item.amount)}</Typography>
             </View>
           ))}
 
           <View style={styles.divider} />
 
           <View style={styles.itemRow}>
-            <Typography variant="bodyLarge" color={PodarColors.textPrimary}>Subtotal</Typography>
-            <Typography variant="bodyLarge" color={PodarColors.textPrimary}>{formatCurrency(feeDetails.totalAmount)}</Typography>
+            <Typography variant="bodyLarge" color={InnonshColors.textPrimary}>Subtotal</Typography>
+            <Typography variant="bodyLarge" color={InnonshColors.textPrimary}>{formatCurrency(feeDetails.totalAmount)}</Typography>
           </View>
 
           {feeDetails.fine > 0 && (
             <View style={styles.itemRow}>
-              <Typography variant="bodyLarge" color={PodarColors.error}>Late Fine</Typography>
-              <Typography variant="bodyLarge" color={PodarColors.error}>+ {formatCurrency(feeDetails.fine)}</Typography>
+              <Typography variant="bodyLarge" color={InnonshColors.error}>Late Fine</Typography>
+              <Typography variant="bodyLarge" color={InnonshColors.error}>+ {formatCurrency(feeDetails.fine)}</Typography>
             </View>
           )}
 
           {feeDetails.amountPaid > 0 && (
             <View style={styles.itemRow}>
-              <Typography variant="bodyLarge" color={PodarColors.success}>Amount Paid</Typography>
-              <Typography variant="bodyLarge" color={PodarColors.success}>- {formatCurrency(feeDetails.amountPaid)}</Typography>
+              <Typography variant="bodyLarge" color={InnonshColors.success}>Amount Paid</Typography>
+              <Typography variant="bodyLarge" color={InnonshColors.success}>- {formatCurrency(feeDetails.amountPaid)}</Typography>
             </View>
           )}
 
           <View style={styles.divider} />
 
           <View style={styles.itemRow}>
-            <Typography variant="h3" color={PodarColors.primary}>Total Payable</Typography>
-            <Typography variant="h3" color={PodarColors.primary}>{formatCurrency(totalPayable)}</Typography>
+            <Typography variant="h3" color={InnonshColors.primary}>Total Payable</Typography>
+            <Typography variant="h3" color={InnonshColors.primary}>{formatCurrency(totalPayable)}</Typography>
           </View>
         </View>
 
@@ -210,20 +210,20 @@ export default function FeeDetailScreen({ route, navigation }: any) {
             title={`Pay ${formatCurrency(totalPayable)} Securely`}
             onPress={() => navigation.navigate('PayFee', { transactionId })}
             size="large"
-            icon={<CheckCircle2 size={20} color={PodarColors.surface} />}
+            icon={<CheckCircle2 size={20} color={InnonshColors.surface} />}
             style={styles.actionBtn}
           />
         ) : (
           <View style={styles.paidContainer}>
-            <CheckCircle2 size={32} color={PodarColors.success} style={{ marginBottom: 8 }} />
-            <Typography variant="h3" color={PodarColors.success}>Fully Paid</Typography>
-            <Typography variant="caption" color={PodarColors.textSecondary} align="center" style={{ marginTop: 4 }}>
+            <CheckCircle2 size={32} color={InnonshColors.success} style={{ marginBottom: 8 }} />
+            <Typography variant="h3" color={InnonshColors.success}>Fully Paid</Typography>
+            <Typography variant="caption" color={InnonshColors.textSecondary} align="center" style={{ marginTop: 4 }}>
               Your transaction was successful. Thank you for your payment.
             </Typography>
             <Button
               title="Download Receipt"
               variant="outline"
-              icon={<Download size={18} color={PodarColors.primary} />}
+              icon={<Download size={18} color={InnonshColors.primary} />}
               onPress={handleDownloadReceipt}
               loading={downloadLoading}
               style={styles.receiptBtn}
@@ -239,7 +239,7 @@ export default function FeeDetailScreen({ route, navigation }: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: PodarColors.background,
+    backgroundColor: InnonshColors.background,
   },
   loadingContainer: {
     flex: 1,
@@ -247,51 +247,51 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   scrollContent: {
-    padding: PodarSpacing.lg,
+    padding: InnonshSpacing.lg,
     paddingBottom: 40,
   },
   summaryCard: {
-    backgroundColor: PodarColors.surface,
-    borderRadius: PodarRadius.lg,
-    padding: PodarSpacing.lg,
-    marginBottom: PodarSpacing.lg,
-    ...PodarShadows.sm,
+    backgroundColor: InnonshColors.surface,
+    borderRadius: InnonshRadius.lg,
+    padding: InnonshSpacing.lg,
+    marginBottom: InnonshSpacing.lg,
+    ...InnonshShadows.sm,
     borderTopWidth: 4,
-    borderTopColor: PodarColors.primary,
+    borderTopColor: InnonshColors.primary,
   },
   headerRow: {
     flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
-    marginBottom: PodarSpacing.md,
+    marginBottom: InnonshSpacing.md,
   },
   iconContainer: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: PodarColors.primaryLight + '20',
+    backgroundColor: InnonshColors.primaryLight + '20',
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: PodarSpacing.sm,
+    marginRight: InnonshSpacing.sm,
   },
   amountRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     borderTopWidth: 1,
-    borderTopColor: PodarColors.border,
-    paddingTop: PodarSpacing.md,
+    borderTopColor: InnonshColors.border,
+    paddingTop: InnonshSpacing.md,
   },
   sectionTitle: {
-    marginBottom: PodarSpacing.md,
-    color: PodarColors.textPrimary,
+    marginBottom: InnonshSpacing.md,
+    color: InnonshColors.textPrimary,
   },
   detailCard: {
-    backgroundColor: PodarColors.surface,
-    borderRadius: PodarRadius.lg,
-    padding: PodarSpacing.lg,
-    marginBottom: PodarSpacing.xl,
-    ...PodarShadows.sm,
+    backgroundColor: InnonshColors.surface,
+    borderRadius: InnonshRadius.lg,
+    padding: InnonshSpacing.lg,
+    marginBottom: InnonshSpacing.xl,
+    ...InnonshShadows.sm,
   },
   itemRow: {
     flexDirection: 'row',
@@ -300,22 +300,22 @@ const styles = StyleSheet.create({
   },
   divider: {
     height: 1,
-    backgroundColor: PodarColors.border,
+    backgroundColor: InnonshColors.border,
     marginVertical: 12,
   },
   actionBtn: {
-    marginBottom: PodarSpacing.lg,
+    marginBottom: InnonshSpacing.lg,
   },
   paidContainer: {
     alignItems: 'center',
-    backgroundColor: PodarColors.success + '10',
-    padding: PodarSpacing.lg,
-    borderRadius: PodarRadius.lg,
+    backgroundColor: InnonshColors.success + '10',
+    padding: InnonshSpacing.lg,
+    borderRadius: InnonshRadius.lg,
     borderWidth: 1,
-    borderColor: PodarColors.success + '40',
+    borderColor: InnonshColors.success + '40',
   },
   receiptBtn: {
-    marginTop: PodarSpacing.md,
+    marginTop: InnonshSpacing.md,
     width: '100%',
   }
 });

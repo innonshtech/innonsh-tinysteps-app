@@ -6,7 +6,7 @@ type Shadows = {
     lg: ViewStyle;
 };
 
-export const PodarShadows: Shadows = {
+export const InnonshShadows: Shadows = {
     sm: Platform.select({
         ios: {
             shadowColor: '#111827',

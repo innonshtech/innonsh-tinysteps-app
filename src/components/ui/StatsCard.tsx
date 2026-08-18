@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
-import { PodarColors } from '../../theme/colors';
-import { PodarSpacing, PodarRadius } from '../../theme/spacing';
-import { PodarShadows } from '../../theme/shadows';
+import { InnonshColors } from '../../theme/colors';
+import { InnonshSpacing, InnonshRadius } from '../../theme/spacing';
+import { InnonshShadows } from '../../theme/shadows';
 import { Typography } from '../ui/Typography';
 
 interface StatsCardProps {
@@ -17,7 +17,7 @@ export const StatsCard: React.FC<StatsCardProps> = ({
     icon,
     value,
     label,
-    color = PodarColors.primary,
+    color = InnonshColors.primary,
     style,
 }) => {
     return (
@@ -26,10 +26,10 @@ export const StatsCard: React.FC<StatsCardProps> = ({
                 {icon}
             </View>
             <View style={styles.content}>
-                <Typography variant="h2" color={PodarColors.textPrimary}>
+                <Typography variant="h2" color={InnonshColors.textPrimary}>
                     {value}
                 </Typography>
-                <Typography variant="caption" color={PodarColors.textSecondary} numberOfLines={1} style={{ flexShrink: 1 }}>
+                <Typography variant="caption" color={InnonshColors.textSecondary} numberOfLines={1} style={{ flexShrink: 1 }}>
                     {label}
                 </Typography>
             </View>
@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: PodarColors.surface,
-        borderRadius: PodarRadius.lg,
-        padding: PodarSpacing.md,
-        ...PodarShadows.sm,
+        backgroundColor: InnonshColors.surface,
+        borderRadius: InnonshRadius.lg,
+        padding: InnonshSpacing.md,
+        ...InnonshShadows.sm,
         borderWidth: 1,
-        borderColor: PodarColors.border,
+        borderColor: InnonshColors.border,
     },
     iconContainer: {
         width: 48,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         borderRadius: 24,
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: PodarSpacing.sm,
+        marginRight: InnonshSpacing.sm,
     },
     content: {
         flex: 1,

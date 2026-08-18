@@ -1,4 +1,4 @@
-export const PodarColors = {
+export const InnonshColors = {
     primary: '#832996',
     primaryLight: '#a64fb9',
     primaryDark: '#5b1c69',

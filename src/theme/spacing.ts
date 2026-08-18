@@ -1,4 +1,4 @@
-export const PodarSpacing = {
+export const InnonshSpacing = {
     xs: 4,
     sm: 8,
     md: 16,
@@ -7,7 +7,7 @@ export const PodarSpacing = {
     xxl: 40,
 };
 
-export const PodarRadius = {
+export const InnonshRadius = {
     sm: 8,
     md: 12,
     lg: 16,

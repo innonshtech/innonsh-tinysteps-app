@@ -13,13 +13,14 @@ import { useChildStore } from '../../store/childStore';
 import { useNotificationStore } from '../../store/notificationStore';
 import { BottomTabParamList } from '../../navigation/BottomTabNavigator';
 import { DashboardService } from '../../services/dashboard.service';
+import { getFirstName } from '../../utils/formatName';
 
 type NavigationProp = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabParamList, 'Home'>,
   NativeStackNavigationProp<any>
 >;
 
-// Define explicit Podar branding colors from HTML reference
+// Define explicit Innonsh branding colors from HTML reference
 const brandColors = {
   primary: '#68047d',
   secondary: '#8b3d9f',
@@ -137,6 +138,7 @@ export default function HomeScreen() {
   const formattedDate = new Date().toLocaleDateString('en-US', dateOptions);
   
   const statusColors = getStatusColor(attendanceStatus);
+  const greetingName = getFirstName(selectedChild?.name || user?.name, 'Parent');
 
   const renderChildPill = ({ item }: { item: any }) => {
     const isSelected = selectedChild?._id === item._id;
@@ -147,7 +149,7 @@ export default function HomeScreen() {
         activeOpacity={0.8}
       >
         <Text style={[styles.childPillText, isSelected && styles.childPillTextSelected]}>
-          {item.name.split(' ')[0]}
+          {getFirstName(item.name, 'Child')}
         </Text>
       </TouchableOpacity>
     );
@@ -171,7 +173,7 @@ export default function HomeScreen() {
           <View style={styles.headerTop}>
             <View>
               <Text style={styles.headerTitle}>TinySteps</Text>
-              <Text style={styles.headerSubtitle}>Podar International School</Text>
+              <Text style={styles.headerSubtitle}>Innonsh International School</Text>
             </View>
             <TouchableOpacity style={styles.bellBtn} onPress={() => navigation.navigate('Notifications')}>
               <Bell color="#fff" size={24} />
@@ -179,7 +181,7 @@ export default function HomeScreen() {
             </TouchableOpacity>
           </View>
           <View style={styles.greetingContainer}>
-            <Text style={styles.greetingText}>{getGreeting()} {selectedChild?.name?.split(' ')[0] || user?.name || 'Parent'}</Text>
+            <Text style={styles.greetingText}>{getGreeting()} {greetingName}</Text>
             <Text style={styles.dateText}>Today is {formattedDate}</Text>
           </View>
           
@@ -197,12 +199,10 @@ export default function HomeScreen() {
         <Animated.View style={{ opacity: fadeAnim, marginTop: -40, paddingHorizontal: 24 }}>
           {/* Student Summary Card */}
           <View style={styles.studentCard}>
-            <View style={styles.studentTopRow}>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.studentName}>{selectedChild?.name || 'Student Name'}</Text>
-                <Text style={styles.studentDetails}>Class {selectedChild?.className || '--'} • Roll No. {selectedChild?.admissionNo || '--'}</Text>
-              </View>
-              <View style={[styles.statusBadge, { backgroundColor: statusColors.bg }]}>
+            <View style={styles.studentHeaderContainer}>
+              <Text style={styles.studentName}>{selectedChild?.name || 'Student Name'}</Text>
+              <Text style={styles.studentDetails}>Class: {selectedChild?.className || '--'}</Text>
+              <View style={[styles.statusBadge, { backgroundColor: statusColors.bg, marginTop: 8, alignSelf: 'flex-start' }]}>
                 <Text style={[styles.statusText, { color: statusColors.text }]}>{attendanceStatus}</Text>
               </View>
             </View>
@@ -407,9 +407,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 30,
   },
-  studentTopRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  studentHeaderContainer: {
+    flexDirection: 'column',
     alignItems: 'flex-start',
   },
   studentName: {
